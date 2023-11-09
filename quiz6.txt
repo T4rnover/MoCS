@@ -1,0 +1,12 @@
+The first gripe is that Wolfram proposes a new scientific approach that is almost solely based on cellular automata.  The further gripe is that this largely (but not wholly) end arounds conventional physics models.  The complaints further say Wolfram's model is an "infinitely flexible philosophy.
+
+The second gripe is that Wolfram avoided the peer review process, which led to academics debating the rigor of his theory after the fact (Wolfram also went on a press and publishing offensive when New Kind of Science was released).
+
+The third gripe is that Wolfram should have cited the prior work of Conway, Von Neumann, and others with similar ideas.  He didn't have to, as he did this outside of academics, but it didn't make him friends.
+
+Last, the article referenced below states the one thing everyone agrees on with Wolfram's work:
+
+"Even Wolfram's critics acknowledge he is right about at least one thing: it is genuinely interesting that simple computational rules can lead to such complex phenomena."
+
+
+https://www.scientificamerican.com/article/physicists-criticize-stephen-wolframs-theory-of-everything/

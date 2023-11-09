@@ -1,0 +1,10 @@
+In the first paper, I found Figure 2 and Figure 3 extremely interesting.  In figure 2, we see the incredible importance of keeping R-Not under the 10 percent Hospital Capacity Line. The magic number seems to be slightly higher than 1.5, but if you want some padding, below 1.5.  Even more interesting was Figure 3 which shows the effect of vaccination rates.  
+
+Let me be plain.  This is the best article I have read on COVID-19.  That said, this is a methods paper, not really one that hammers policy decisions of complex SIR processes.  This is a big part of why it is such a great article.
+
+The second paper extends the first by adding "E" or the exposed group.  The authors make the note that demography is a big factor in and out of the (now 4) groups.  Again, the major points of attention are the graphs which show the extreme importance of managing R-Not. There are interesting tidbits related to the class referencing timesteps and the like.
+
+The last part of this, which I found fascinating, was the Phase Plots in Fig. 2. that show Infections as a function of Susceptible with the goal of finding the "endemic equilibrium" Doing this in the phase plane gives extremely interesting insights by locating where the "attractor" changes when you change the duration of immunity (plot 3c).
+
+The second article was less impactful than the first but is probably more relevant to future SIR and SEIR models.
+

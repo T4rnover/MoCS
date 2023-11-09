@@ -1,0 +1,4847 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    120672,       4839]
+NotebookOptionsPosition[    119606,       4815]
+NotebookOutlinePosition[    120025,       4831]
+CellTagsIndexPosition[    119982,       4828]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"cluster", "=", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "0"}], "}"}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"next", "=", 
+   RowBox[{"Nearest", "[", 
+    RowBox[{"cluster", "->", "Automatic"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"wander", ":=", 
+   RowBox[{"RandomChoice", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"0", ",", "1"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "0"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", 
+        RowBox[{"-", "1"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "0"}], "}"}]}], "}"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"ncluster", "=", "1200"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"l", "=", "100"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Do", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"particle", "=", 
+       RowBox[{"RandomInteger", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "l"}], ",", "l"}], "}"}], ",", "2"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"While", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Length", "[", 
+          RowBox[{"next", "[", 
+           RowBox[{"particle", ",", 
+            RowBox[{"{", 
+             RowBox[{"1", ",", "1"}], "}"}]}], "]"}], "]"}], "==", "0"}], ",", 
+        RowBox[{
+         RowBox[{"particle", "=", 
+          RowBox[{"RandomInteger", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"-", "l"}], "+", "1"}], ",", 
+              RowBox[{"l", "-", "1"}]}], "}"}], ",", "2"}], "]"}]}], ";"}]}], 
+       "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"step", "=", "wander"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"While", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Length", "[", 
+          RowBox[{"next", "[", 
+           RowBox[{"particle", ",", 
+            RowBox[{"{", 
+             RowBox[{"1", ",", "1"}], "}"}]}], "]"}], "]"}], "==", "0"}], ",", 
+        RowBox[{
+         RowBox[{"particle", "+=", "step"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"step", "=", "wander"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"While", "[", 
+          RowBox[{
+           RowBox[{"!", 
+            RowBox[{"inBounds", "[", 
+             RowBox[{
+              RowBox[{"particle", "+", "step"}], ",", "l"}], "]"}]}], ",", 
+           RowBox[{
+            RowBox[{"step", "=", "wander"}], ";"}]}], "]"}]}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"AppendTo", "[", 
+       RowBox[{"cluster", ",", "particle"}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"next", "=", 
+       RowBox[{"Nearest", "[", 
+        RowBox[{"cluster", "->", "Automatic"}], "]"}]}]}], ",", 
+     RowBox[{"{", "ncluster", "}"}]}], "]"}], ";"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Graphics", "[", 
+  RowBox[{"{", 
+   RowBox[{"Point", "[", "cluster", "]"}], "}"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Graphics", "[", 
+  RowBox[{"{", 
+   RowBox[{"Line", "[", "cluster", "]"}], "}"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Graphics", "[", 
+  RowBox[{"{", 
+   RowBox[{"Text", "[", "cluster", "]"}], "}"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.906196516951553*^9, 3.906196516951553*^9}, {
+  3.906196836618673*^9, 3.906196876500746*^9}, {3.9061969570025225`*^9, 
+  3.906196963996417*^9}, {3.906197021657794*^9, 3.9061970712855654`*^9}, {
+  3.9061971057299366`*^9, 3.906197112076133*^9}, {3.9061972374526453`*^9, 
+  3.906197254023962*^9}, {3.9061973472863817`*^9, 3.9061973630768223`*^9}, {
+  3.9061973978017173`*^9, 3.9061974042532597`*^9}, {3.90620141947561*^9, 
+  3.9062014194836526`*^9}, {3.906202969142001*^9, 3.9062029691500006`*^9}, {
+  3.9062035972561913`*^9, 
+  3.9062035972751913`*^9}},ExpressionUUID->"dd34281e-5deb-4800-ac98-\
+8de74f5e4593"],
+
+Cell[BoxData[
+ GraphicsBox[PointBox[CompressedData["
+1:eJxt2Q2SIskNBWDxD90zh/CV9gg+wPpsPppnpuluoElvbehzPvAQQUBRWUr9
+PD1JyT/++a8//lxX1b+3VctnvsZfr+Vz1d+X170/V3H//vS57u/Wk7G8vvra
+s8tr0/c3/Xvqkdcj5K/iObrk8/eQv32ST59762f97/Zftc7kpzz31jV9Z5+K
+e3TZha75+/NvrumWfhyx31evXT6/Wr9l3Tb2zhjRe9fXu9YzZS3v/V/vW8tL
+G61xn57ur/r31Pk53utYk3Kqv/MH//H3uh5xslxfOy63fotZ7m/99Qmzv9Od
+X9L/l76Gj1vvee1rOj5jxr114CXls9v71vuJMyzeWke6VvgtY0wvvr3FM7uw
+5xn/sMpHYtxL/5Z1GfN1CSzs45lNxCXxeR3/n2PwsI59NrEPOZ9j5uS2P1e9
+57bl3Nvmy5h4XfWz7HBfnK7hg8yRfcfqHteZT/uIoXv8sW392W2/XMsP1ycf
+8ov7+7ZtHzK3/RwfXVrerfUjb/ntUDOXLmPmPb8mrsmj0y30ZOst1mZc9vWI
+28PTM1+hn2t28HPmOj0PkRP0r5o8cIi4wva2Zs55ji73kLHIPdbkOXZkDVt+
++wjd6Mx/lzHzrFrGrtccIo7PuDv22mM/Zw3c8S/5ye/8PsYjj2Ye03HT8j5b
+zr4md39GfG+xHxm/46ZjzfqavE+Pj9YLdtPf4qzWXFof/r1GXrEFfvl73zrg
+L9i256nX2Wvfv8Eh++X98ht54sG/WSc2/du+Zk5+Rl7hD3FnL+491OwFroGZ
+XT1yRda5zzHruzz5jGfFavRzv8Mr3CeWYFSu0Gl0bNizDRkpF5+q6c99BPlq
+VfY0x5YL54dedwh9PIuP2Hjp/eiaPLEOvStstv829F9+f+9Ysnm03Nt47I1w
+gv2T8+WHN/v0ELAAc+9j5tLiw8/wd3ITX9H3WJPP4SN5lg/lwnPe89lXY/09
+8CZXquWwX4x3NfHObzDEH/nih8+I3+hn5BOfkg//I9ac6pFf+Fo9WNbJa7kt
+5nzHD4nta++hRpxC7+Tx7F/F66VmbSCnWv/l8zVwR89DzXz3PF5M3/B/1cyD
+jBv/jTH5Sg2Eb2vEVkz4y7N8xN9qNy5UD8/jkf/k16r9C++71h1PwYy6pVat
+Gj/iTeZL2IpnxQ5W31vGNu7jIHuyQY7jz11NTsEzI3CqVtBfXdrV5BVcgOPk
+ToX92WMcQs+38Nsunhm97td45Khd6JW1/XPM2iKuZMpjfshZS37IteX3U+9F
+1rJezvDFtv2+6zjDMV356Nq4uQR+zmPWJPJ39chJOTPhCtjD9ceanEQPfYD8
+S53ZOvreR+NvkSUO/AjPfASf7OLHl5qcrN69tXz1WB5kP71reeocTpE7Hy1/
+eeM7dsFT9qXZC55ah5zv5OM11sHqoteviAW+wFXW5lkJjs753F6nmnVGrDyj
+nvA/G9jzPmYPkjVVHYQn+8sTtSFtwu+nWMsn57B3+WR/zp05x8NhhQ+tg8X7
+mDxOfzaPMXv85frnmH2S2vXVcch+jM2w9jEmh8hL+LF3YkE81n1fXqXfyJHX
++gM4gH+ccIy92OC551ko54JTPfZLeU6UeWfGWeTCwxizBtxbFn+N2F9NWF7L
+mm816+m+r/GLvfSd8p/91iV3yEn1jw9H+xDGcHVivFrOssfbmP04Gcv983ic
+mXHIaIyJX56bZo1M3Ijze/gpzxbzrER8cCrd5Jv93ePPXXyHEb4bbdPbmP2V
+OMNWu+V/8+a+5hkZuzehl96AP/majud+Rr9jhtYHpD8/2ubRvoK/CmzIG9yr
+ruo7xLxaD/XgfUzO08vbHwZuY/LuSz2effyu9uFCvlAHzh33nFFwQr7FiD1q
+Cj/mWc89bIGnUz32PFWzzzLHsFefzv/V/tIb/Qw8PvM9jL7WPI9iK96D3U2s
+p/+irzzPeOmhqh75jS1jzFzUM5jj82wg5xWx+zFm7d90TLLX5j+ckJxiH36E
+5ZeauWqeERv9V54J8f/7mGfSMK0+ka9nxk0jZOZ5Px/D+bnvm1fNNTkvqsHq
+Lp6Ws3z6Pubc+1qT19QI+uU5QGI8zzL4J3uBxMlXyF32FK88HzeX4oQ85875
+NPNJz5p1xaw8QpZaeek99Ig56721bnxYNWdJfuGP770fOXwFG9/q8T8MdUVu
+qhVmvKy9yadZu976/ikwx/fOMshTj/nD+dsu1jr3wnHiYz8169xxpRO9rx1H
+NQGWXmKPXeutP6XjJvbP/xH0yPCJB6see8FryLRH1nO8hMvlIs55rdnvi5e+
+gs1Vs3/Js1L9Bp/qEdWV7H3zf4JjzdxTx/ECndeNle81cyV5Ks8q5Id59G3M
+HkTe4cHMb/MBvn6pyX/qNHs/em99b573ma3GmPWbPvpGeFX7frXc5Eyx0g/g
+g1O/8b5eEZc4X/sMf/1o/ejttQo5Zh0z2mh55zHPjVYde3yfZ358k+c+WU/V
+nTFm3ug39K2wm3MPv43wff5nJa/xzHlMXhstK2ub+i3/X2qed+hRxIndaone
+16x9b9n6c72pdT/HnBf0RGq2vDfr89FbP1s1+37nT681uUZ/vWBB3ZBvu/iu
+r8o6dR5zNtH36OH8j6Df34ZeeA2m6fCzbcD/9vox5hw6+j5fnurx/wlnOXhU
+fc78gLVd54Dap67AVdXsQ9Rz+MMLYp3/UZij6GDuVS/xHy4bY9b6Q+uX/53C
+vhkEPvIcyRkRO+2T5+y4HiZ/jTk3wPk11lXHFNdk/sK/uoS/4JfufHjruOFa
+ZzbyTT+o3ozAfP43dB6TD47h+3P7JWdEPLPIdD6gz/9Ws26rF3nOLafUHfxu
+9n2pee7L78v7e8RBby5PyMkz94xVYlTtlU/rkFntI3OO+f4/LUve61dWoZOX
+GL/WPEc1d7EJ5r73WrHO/3fe+vs54gHveTad84l99NfqrpjLz/8COq2Y6w==
+
+   "]]]], "Output",
+ CellChangeTimes->{3.906197143550701*^9, 3.906197259531008*^9, 
+  3.906197351498358*^9, 3.9061974089652386`*^9},
+ CellLabel->
+  "Out[126]=",ExpressionUUID->"2b8b1a63-91aa-43dd-82df-4a0d1b4354c8"],
+
+Cell[BoxData[
+ GraphicsBox[LineBox[CompressedData["
+1:eJxt2Q2SIskNBWDxD90zh/CV9gg+wPpsPppnpuluoElvbehzPvAQQUBRWUr9
+PD1JyT/++a8//lxX1b+3VctnvsZfr+Vz1d+X170/V3H//vS57u/Wk7G8vvra
+s8tr0/c3/Xvqkdcj5K/iObrk8/eQv32ST59762f97/Zftc7kpzz31jV9Z5+K
+e3TZha75+/NvrumWfhyx31evXT6/Wr9l3Tb2zhjRe9fXu9YzZS3v/V/vW8tL
+G61xn57ur/r31Pk53utYk3Kqv/MH//H3uh5xslxfOy63fotZ7m/99Qmzv9Od
+X9L/l76Gj1vvee1rOj5jxr114CXls9v71vuJMyzeWke6VvgtY0wvvr3FM7uw
+5xn/sMpHYtxL/5Z1GfN1CSzs45lNxCXxeR3/n2PwsI59NrEPOZ9j5uS2P1e9
+57bl3Nvmy5h4XfWz7HBfnK7hg8yRfcfqHteZT/uIoXv8sW392W2/XMsP1ycf
+8ov7+7ZtHzK3/RwfXVrerfUjb/ntUDOXLmPmPb8mrsmj0y30ZOst1mZc9vWI
+28PTM1+hn2t28HPmOj0PkRP0r5o8cIi4wva2Zs55ji73kLHIPdbkOXZkDVt+
++wjd6Mx/lzHzrFrGrtccIo7PuDv22mM/Zw3c8S/5ye/8PsYjj2Ye03HT8j5b
+zr4md39GfG+xHxm/46ZjzfqavE+Pj9YLdtPf4qzWXFof/r1GXrEFfvl73zrg
+L9i256nX2Wvfv8Eh++X98ht54sG/WSc2/du+Zk5+Rl7hD3FnL+491OwFroGZ
+XT1yRda5zzHruzz5jGfFavRzv8Mr3CeWYFSu0Gl0bNizDRkpF5+q6c99BPlq
+VfY0x5YL54dedwh9PIuP2Hjp/eiaPLEOvStstv829F9+f+9Ysnm03Nt47I1w
+gv2T8+WHN/v0ELAAc+9j5tLiw8/wd3ITX9H3WJPP4SN5lg/lwnPe89lXY/09
+8CZXquWwX4x3NfHObzDEH/nih8+I3+hn5BOfkg//I9ac6pFf+Fo9WNbJa7kt
+5nzHD4nta++hRpxC7+Tx7F/F66VmbSCnWv/l8zVwR89DzXz3PF5M3/B/1cyD
+jBv/jTH5Sg2Eb2vEVkz4y7N8xN9qNy5UD8/jkf/k16r9C++71h1PwYy6pVat
+Gj/iTeZL2IpnxQ5W31vGNu7jIHuyQY7jz11NTsEzI3CqVtBfXdrV5BVcgOPk
+ToX92WMcQs+38Nsunhm97td45Khd6JW1/XPM2iKuZMpjfshZS37IteX3U+9F
+1rJezvDFtv2+6zjDMV356Nq4uQR+zmPWJPJ39chJOTPhCtjD9ceanEQPfYD8
+S53ZOvreR+NvkSUO/AjPfASf7OLHl5qcrN69tXz1WB5kP71reeocTpE7Hy1/
+eeM7dsFT9qXZC55ah5zv5OM11sHqoteviAW+wFXW5lkJjs753F6nmnVGrDyj
+nvA/G9jzPmYPkjVVHYQn+8sTtSFtwu+nWMsn57B3+WR/zp05x8NhhQ+tg8X7
+mDxOfzaPMXv85frnmH2S2vXVcch+jM2w9jEmh8hL+LF3YkE81n1fXqXfyJHX
++gM4gH+ccIy92OC551ko54JTPfZLeU6UeWfGWeTCwxizBtxbFn+N2F9NWF7L
+mm816+m+r/GLvfSd8p/91iV3yEn1jw9H+xDGcHVivFrOssfbmP04Gcv983ic
+mXHIaIyJX56bZo1M3Ijze/gpzxbzrER8cCrd5Jv93ePPXXyHEb4bbdPbmP2V
+OMNWu+V/8+a+5hkZuzehl96AP/majud+Rr9jhtYHpD8/2ubRvoK/CmzIG9yr
+ruo7xLxaD/XgfUzO08vbHwZuY/LuSz2effyu9uFCvlAHzh33nFFwQr7FiD1q
+Cj/mWc89bIGnUz32PFWzzzLHsFefzv/V/tIb/Qw8PvM9jL7WPI9iK96D3U2s
+p/+irzzPeOmhqh75jS1jzFzUM5jj82wg5xWx+zFm7d90TLLX5j+ckJxiH36E
+5ZeauWqeERv9V54J8f/7mGfSMK0+ka9nxk0jZOZ5Px/D+bnvm1fNNTkvqsHq
+Lp6Ws3z6Pubc+1qT19QI+uU5QGI8zzL4J3uBxMlXyF32FK88HzeX4oQ85875
+NPNJz5p1xaw8QpZaeek99Ig56721bnxYNWdJfuGP770fOXwFG9/q8T8MdUVu
+qhVmvKy9yadZu976/ikwx/fOMshTj/nD+dsu1jr3wnHiYz8169xxpRO9rx1H
+NQGWXmKPXeutP6XjJvbP/xH0yPCJB6see8FryLRH1nO8hMvlIs55rdnvi5e+
+gs1Vs3/Js1L9Bp/qEdWV7H3zf4JjzdxTx/ECndeNle81cyV5Ks8q5Id59G3M
+HkTe4cHMb/MBvn6pyX/qNHs/em99b573ma3GmPWbPvpGeFX7frXc5Eyx0g/g
+g1O/8b5eEZc4X/sMf/1o/ejttQo5Zh0z2mh55zHPjVYde3yfZ358k+c+WU/V
+nTFm3ug39K2wm3MPv43wff5nJa/xzHlMXhstK2ub+i3/X2qed+hRxIndaone
+16x9b9n6c72pdT/HnBf0RGq2vDfr89FbP1s1+37nT681uUZ/vWBB3ZBvu/iu
+r8o6dR5zNtH36OH8j6Df34ZeeA2m6fCzbcD/9vox5hw6+j5fnurx/wlnOXhU
+fc78gLVd54Dap67AVdXsQ9Rz+MMLYp3/UZij6GDuVS/xHy4bY9b6Q+uX/53C
+vhkEPvIcyRkRO+2T5+y4HiZ/jTk3wPk11lXHFNdk/sK/uoS/4JfufHjruOFa
+ZzbyTT+o3ozAfP43dB6TD47h+3P7JWdEPLPIdD6gz/9Ws26rF3nOLafUHfxu
+9n2pee7L78v7e8RBby5PyMkz94xVYlTtlU/rkFntI3OO+f4/LUve61dWoZOX
+GL/WPEc1d7EJ5r73WrHO/3fe+vs54gHveTad84l99NfqrpjLz/8COq2Y6w==
+
+   "]]]], "Output",
+ CellChangeTimes->{3.906197143550701*^9, 3.906197259531008*^9, 
+  3.906197351498358*^9, 3.9061974089782724`*^9},
+ CellLabel->
+  "Out[127]=",ExpressionUUID->"1ae0630d-d164-41e9-a01b-e43e932b1a7e"]
+}, {4}]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"cluster", "=", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "0"}], "}"}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"next", "=", 
+   RowBox[{"Nearest", "[", 
+    RowBox[{"cluster", "->", "Automatic"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"wander", ":=", 
+   RowBox[{"RandomChoice", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"0", ",", "1"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "0"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", 
+        RowBox[{"-", "1"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "0"}], "}"}]}], "}"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ncluster", "=", "2000"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Do", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"particle", "=", 
+       RowBox[{"RandomInteger", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "l"}], ",", "l"}], "}"}], ",", "2"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"While", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Length", "[", 
+          RowBox[{"next", "[", 
+           RowBox[{"particle", ",", 
+            RowBox[{"{", 
+             RowBox[{"1", ",", "1"}], "}"}]}], "]"}], "]"}], "==", "0"}], ",", 
+        RowBox[{
+         RowBox[{"particle", "=", 
+          RowBox[{"RandomInteger", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"-", "l"}], "+", "1"}], ",", 
+              RowBox[{"l", "-", "1"}]}], "}"}], ",", "2"}], "]"}]}], ";"}]}], 
+       "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"step", "=", "wander"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"While", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Length", "[", 
+          RowBox[{"next", "[", 
+           RowBox[{"particle", ",", 
+            RowBox[{"{", 
+             RowBox[{"1", ",", "1"}], "}"}]}], "]"}], "]"}], "==", "0"}], ",", 
+        RowBox[{
+         RowBox[{"particle", "+=", "step"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"step", "=", "wander"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"While", "[", 
+          RowBox[{
+           RowBox[{"!", 
+            RowBox[{"inBounds", "[", 
+             RowBox[{
+              RowBox[{"particle", "+", "step"}], ",", "l"}], "]"}]}], ",", 
+           RowBox[{
+            RowBox[{"step", "=", "wander"}], ";"}]}], "]"}]}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"AppendTo", "[", 
+       RowBox[{"cluster", ",", "particle"}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"next", "=", 
+       RowBox[{"Nearest", "[", 
+        RowBox[{"cluster", "->", "Automatic"}], "]"}]}]}], ",", 
+     RowBox[{"{", "ncluster", "}"}]}], "]"}], ";"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"p", "=", " ", "cluster"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Graphics", "[", 
+  RowBox[{"{", 
+   RowBox[{"Red", ",", 
+    RowBox[{"Point", "[", "p", "]"}]}], "}"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Graphics", "[", 
+  RowBox[{"{", 
+   RowBox[{"Green", ",", " ", 
+    RowBox[{"Line", "[", "p", "]"}]}], "}"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Graphics", "[", 
+  RowBox[{"{", 
+   RowBox[{"Text", "[", "p", "]"}], "}"}], 
+  "]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.906196516951553*^9, 3.906196516951553*^9}, {
+   3.906196836618673*^9, 3.906196876500746*^9}, {3.9061969570025225`*^9, 
+   3.906196963996417*^9}, {3.906197021657794*^9, 3.9061970712855654`*^9}, {
+   3.9061971057299366`*^9, 3.906197112076133*^9}, {3.9061972374526453`*^9, 
+   3.906197254023962*^9}, {3.9061973472863817`*^9, 3.9061973630768223`*^9}, {
+   3.9061973978017173`*^9, 3.9061974042532597`*^9}, 3.9062011260801344`*^9, {
+   3.9062013586901045`*^9, 3.9062013846521544`*^9}, {3.9062014194906507`*^9, 
+   3.906201434342127*^9}, {3.9062016131416206`*^9, 3.9062016662778454`*^9}, {
+   3.9062017024866467`*^9, 3.906201709622647*^9}, {3.906201926196995*^9, 
+   3.9062019277869945`*^9}, {3.906201992927631*^9, 3.906202014085165*^9}, {
+   3.9062020558365107`*^9, 3.906202071378512*^9}, {3.9062021472499943`*^9, 
+   3.906202202989191*^9}, {3.906202289594174*^9, 3.9062023578586493`*^9}, {
+   3.9062024351751394`*^9, 3.906202458157054*^9}, {3.90620248998962*^9, 
+   3.9062025469680495`*^9}, {3.9062025972458477`*^9, 3.906202628988807*^9}, {
+   3.906202668840417*^9, 3.9062027435121326`*^9}, {3.9062027756250706`*^9, 
+   3.9062027758990183`*^9}, {3.906202808040575*^9, 3.906202832342041*^9}, {
+   3.906202868484934*^9, 3.9062028706489773`*^9}, {3.9062029691550007`*^9, 
+   3.9062029691680007`*^9}, {3.9062030858268785`*^9, 
+   3.9062030940470085`*^9}, {3.906203597281191*^9, 3.906203597303194*^9}, {
+   3.9062036312202444`*^9, 3.906203635578244*^9}, {3.906203698687746*^9, 
+   3.9062037214716334`*^9}, {3.9062037626629066`*^9, 3.906203770130954*^9}, {
+   3.90620385999084*^9, 3.90620386663234*^9}, {3.906203901923382*^9, 
+   3.9062039029823847`*^9}, {3.9062039875021667`*^9, 3.9062039891732297`*^9}},
+ CellLabel->
+  "In[386]:=",ExpressionUUID->"6fed541e-a988-4737-8d30-45f73993e994"],
+
+Cell[BoxData[
+ GraphicsBox[
+  {RGBColor[1, 0, 0], PointBox[CompressedData["
+1:eJxt2wluK8GtBdCyLXl+L8kSsqUsIQtI1pqF5E0e5Yn/N8ADXgkRIMhqVVex
+OFxestp//+e///Gv87XWf67W2j7zVf//Oou/XT/rd475ik/Xz2NcXs9x1jyP
++dx3+re1t3u3t9epzOc93zbms8f4/OrfyVvxe87j+3n//dn3XsSettdH3LfN
+4/tF30eW6nvz2mfLkL/b1zq5dqpL85DnIuYzntwXob+LnsO1XezXfOexDtno
+LnWQNv0Im2zX3vt7znMe63/22ru+3/fTvdDBRdyfa5/anYzGGL/r+9mHD59+
+T39zz2fvL9f96PV8voeuP0KGfc/13nPQo/Ef4Zv73t9XjDWftd/6t9Tv2Rp/
+9d16GQdsQF/71ov57DltkPLRBXt/xLx07fUR8/EBcpDRPWy9YuxbzWu1nOZY
+vY/EDnK9x/jP0PN7zJX6/Wo90PVax3H51vdexPoZp4f+/Ix3+uDuxBb8bb8m
+5v5XnJHvbB3HpjXY0Hf6uOwxh9jrRV+v1ut23e9Xa+L3dA+XYQ9xRM6vk/vJ
+KY7eeq23loUu+MB7yLJaPraw14u4Tmdvcd9lv/nbLr7TNX2Q3zjxs72v+vuh
+xtfZ7P1E3sQR/mF/l7FG4nXFvGTPGDY+MVnMr76e+rrs3y/ajuwBb9aaGD7F
+zcS9s5j3dA/7/q16Hf5KVj4nNsh+deLX5OdPian8jg/QJ1uLB3jMdy57XXu5
+jPXZlB+xLxxKPydXxuk25mpNHnjrsYm7/MNvp/ktMe1qDR6zVea8fdgS7pGZ
+DdmKHK891zbuOtZ6b7nE9n4dx6dPcci2ieNvJ3rNPJyYlHjCj897zeQRVyf3
+8k1/w+n0T7q218TitAV/2357rcG1Q9jnvQZ3vejc7+Q7zfubTNdhPzpl89Xr
+shsfZr+qiavrNTFPVvbaxbpi0R6290tNDqKD05jmE/QJ+zJPrr5frJy3/smX
+fI7+jPkIuenBXnwe4u/31jOfxxeSb2zjrtdg8T78Lv06cyzsoAu+IfeZRw4U
+T9ex57caDPmo4V1wNuMInt70nOx4vSYX8qnkB1WTe1KW137DFxhwtY65AX+9
+WYML+9YLfcJlflB1nHf4rvXIY9/waXu9xH4TB8yd8r3WxFDGL5nIwI7pL4fe
+/2fIKqd/1cT7a+/fWDnpuefIXOv7WpNbEof5rXjme/ac/sT36dnY9L/Mky81
+mAZn5PRDTV7AXc5Cxhz/XMML3LeLPVjHunIhLOfH5hYDdGgP8InfwB95dRtz
+FWsk/r3F/d7sw4bGJmeBwXCz6jjvXLa9n+s4p8IKvO7iRF+w76WmXlgt3+5E
+F3Tqnpv+Hf69tY5TRxk7Tz33TcTDCr2Jq6u+lz1v1+BYYs5nj109V8ovDl3b
+rckz4sP9bLXaduJDvPcUJf6y5q0ani9Pub7W5DoYAPu2v62zWranXidzyXbv
+Y1/n7+xsPJvSubHecoNcRt/wACeXX+jf/A/96bfn/v5ak4/g8/YJb+WA89aN
+/GdvfOc24i/1Aq/TZvLCRezF7/bCP65jzEtNDXdo/WXf4qavZ70uDs/79+Q5
+FyfzpCyHXu81rr/UMZe1R7Z6r8mn9oGzuB+nEUPsAEeyP6K+4bMZ06vjnW/D
+y/Rp4/b9zrws7p9rOFTWwvzivP34tW0pBujtJe5JjpI6YNtDHe+fz/KJm9jX
+c/hmtRwwBA6Jo5ca/IQ37KBHkD0Zdlwtr9/gle/0T77bNVz2tuV+rMFhfbyb
+vp5xlDXqWlOTw+2nHrPrcS+9P3ELC91jXvGRcaAWoK/qPTz1vM81eTFzXNZm
+TzVYvVqvm64fwg9fWw9yOz95ruHzcCt7T9nTe+1PMq+eB/9/jXv581NNzSjG
++LHcWXH/PuyRdSDcEjsXPY5t3mvyV9XgOB/i2+kPGYfbHPjF3Zr67NB2W2vy
+6EvMk31GezrUMVfPWlU8Zf4+7zVhYe7ftbWm71w1XOG+Zb7vufmN+E8+tVqm
+2zU1Q8ajej59rdomN+3fME1upzPX5N77dVxz2EfV5EZxlOOeaupUOPNWE+v8
+ASZcralz+P3ZmvhXX12E/HjyoXWd3Brvgp3qu/teTyytNTXh6nFqYTEKZ+yT
+nek6e563rT+8oGpihS3Nd4j1Yd7dGt6Ha/HBi1iTb38LXWd9j7fiwfLR6vX5
+tLwupp5rOKV9ytUwA1eytz913IeCBW8xJ53Qo1rEnrLnA5tXjKG311gH1m1r
+PNRxrXW3hvPACfoRE/wZT4RDbEwnuDhcgoswhL/gYsnnrc0+yd+tz6/4pxg0
+Pnmydcx/CJnyXAYeZs0Ff+hRL4L/5f7v1+Ry9sVfVu9B/O3WYOlTDRbbf9Vx
+PXO/BmOzJ02uP+HDu5N1yPRc4/N8I2tTvnDX91qbnFWT+8XY7xosxM8r9Lvd
+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
+P+AkaqP/A8swFes=
+    "]]}]], "Output",
+ CellChangeTimes->{
+  3.906202502432022*^9, {3.9062025341310415`*^9, 3.9062025543456297`*^9}, 
+   3.9062026363418007`*^9, {3.9062026856332755`*^9, 3.906202746116077*^9}, 
+   3.9062027803780966`*^9, {3.9062028514480567`*^9, 3.9062028754105673`*^9}, 
+   3.906202976293001*^9, 3.9062031042769656`*^9, 3.9062036042952013`*^9, 
+   3.9062036635819025`*^9, {3.906203708411614*^9, 3.906203724217639*^9}, 
+   3.9062037724189124`*^9, 3.9062038750473647`*^9, 3.9062039110860186`*^9, 
+   3.906203995518248*^9},
+ CellLabel->
+  "Out[392]=",ExpressionUUID->"a63b2269-3256-4bc1-8be6-52b2d74071d9"],
+
+Cell[BoxData[
+ GraphicsBox[
+  {RGBColor[0, 1, 0], LineBox[CompressedData["
+1:eJxt2wluK8GtBdCyLXl+L8kSsqUsIQtI1pqF5E0e5Yn/N8ADXgkRIMhqVVex
+OFxestp//+e///Gv87XWf67W2j7zVf//Oou/XT/rd475ik/Xz2NcXs9x1jyP
++dx3+re1t3u3t9epzOc93zbms8f4/OrfyVvxe87j+3n//dn3XsSettdH3LfN
+4/tF30eW6nvz2mfLkL/b1zq5dqpL85DnIuYzntwXob+LnsO1XezXfOexDtno
+LnWQNv0Im2zX3vt7znMe63/22ru+3/fTvdDBRdyfa5/anYzGGL/r+9mHD59+
+T39zz2fvL9f96PV8voeuP0KGfc/13nPQo/Ef4Zv73t9XjDWftd/6t9Tv2Rp/
+9d16GQdsQF/71ov57DltkPLRBXt/xLx07fUR8/EBcpDRPWy9YuxbzWu1nOZY
+vY/EDnK9x/jP0PN7zJX6/Wo90PVax3H51vdexPoZp4f+/Ix3+uDuxBb8bb8m
+5v5XnJHvbB3HpjXY0Hf6uOwxh9jrRV+v1ut23e9Xa+L3dA+XYQ9xRM6vk/vJ
+KY7eeq23loUu+MB7yLJaPraw14u4Tmdvcd9lv/nbLr7TNX2Q3zjxs72v+vuh
+xtfZ7P1E3sQR/mF/l7FG4nXFvGTPGDY+MVnMr76e+rrs3y/ajuwBb9aaGD7F
+zcS9s5j3dA/7/q16Hf5KVj4nNsh+deLX5OdPian8jg/QJ1uLB3jMdy57XXu5
+jPXZlB+xLxxKPydXxuk25mpNHnjrsYm7/MNvp/ktMe1qDR6zVea8fdgS7pGZ
+DdmKHK891zbuOtZ6b7nE9n4dx6dPcci2ieNvJ3rNPJyYlHjCj897zeQRVyf3
+8k1/w+n0T7q218TitAV/2357rcG1Q9jnvQZ3vejc7+Q7zfubTNdhPzpl89Xr
+shsfZr+qiavrNTFPVvbaxbpi0R6290tNDqKD05jmE/QJ+zJPrr5frJy3/smX
+fI7+jPkIuenBXnwe4u/31jOfxxeSb2zjrtdg8T78Lv06cyzsoAu+IfeZRw4U
+T9ex57caDPmo4V1wNuMInt70nOx4vSYX8qnkB1WTe1KW137DFxhwtY65AX+9
+WYML+9YLfcJlflB1nHf4rvXIY9/waXu9xH4TB8yd8r3WxFDGL5nIwI7pL4fe
+/2fIKqd/1cT7a+/fWDnpuefIXOv7WpNbEof5rXjme/ac/sT36dnY9L/Mky81
+mAZn5PRDTV7AXc5Cxhz/XMML3LeLPVjHunIhLOfH5hYDdGgP8InfwB95dRtz
+FWsk/r3F/d7sw4bGJmeBwXCz6jjvXLa9n+s4p8IKvO7iRF+w76WmXlgt3+5E
+F3Tqnpv+Hf69tY5TRxk7Tz33TcTDCr2Jq6u+lz1v1+BYYs5nj109V8ovDl3b
+rckz4sP9bLXaduJDvPcUJf6y5q0ani9Pub7W5DoYAPu2v62zWranXidzyXbv
+Y1/n7+xsPJvSubHecoNcRt/wACeXX+jf/A/96bfn/v5ak4/g8/YJb+WA89aN
+/GdvfOc24i/1Aq/TZvLCRezF7/bCP65jzEtNDXdo/WXf4qavZ70uDs/79+Q5
+FyfzpCyHXu81rr/UMZe1R7Z6r8mn9oGzuB+nEUPsAEeyP6K+4bMZ06vjnW/D
+y/Rp4/b9zrws7p9rOFTWwvzivP34tW0pBujtJe5JjpI6YNtDHe+fz/KJm9jX
+c/hmtRwwBA6Jo5ca/IQ37KBHkD0Zdlwtr9/gle/0T77bNVz2tuV+rMFhfbyb
+vp5xlDXqWlOTw+2nHrPrcS+9P3ELC91jXvGRcaAWoK/qPTz1vM81eTFzXNZm
+TzVYvVqvm64fwg9fWw9yOz95ruHzcCt7T9nTe+1PMq+eB/9/jXv581NNzSjG
++LHcWXH/PuyRdSDcEjsXPY5t3mvyV9XgOB/i2+kPGYfbHPjF3Zr67NB2W2vy
+6EvMk31GezrUMVfPWlU8Zf4+7zVhYe7ftbWm71w1XOG+Zb7vufmN+E8+tVqm
+2zU1Q8ajej59rdomN+3fME1upzPX5N77dVxz2EfV5EZxlOOeaupUOPNWE+v8
+ASZcralz+P3ZmvhXX12E/HjyoXWd3Brvgp3qu/teTyytNTXh6nFqYTEKZ+yT
+nek6e563rT+8oGpihS3Nd4j1Yd7dGt6Ha/HBi1iTb38LXWd9j7fiwfLR6vX5
+tLwupp5rOKV9ytUwA1eytz913IeCBW8xJ53Qo1rEnrLnA5tXjKG311gH1m1r
+PNRxrXW3hvPACfoRE/wZT4RDbEwnuDhcgoswhL/gYsnnrc0+yd+tz6/4pxg0
+Pnmydcx/CJnyXAYeZs0Ff+hRL4L/5f7v1+Ry9sVfVu9B/O3WYOlTDRbbf9Vx
+PXO/BmOzJ02uP+HDu5N1yPRc4/N8I2tTvnDX91qbnFWT+8XY7xosxM8r9Lvd
+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
+P+AkaqP/A8swFes=
+    "]]}]], "Output",
+ CellChangeTimes->{
+  3.906202502432022*^9, {3.9062025341310415`*^9, 3.9062025543456297`*^9}, 
+   3.9062026363418007`*^9, {3.9062026856332755`*^9, 3.906202746116077*^9}, 
+   3.9062027803780966`*^9, {3.9062028514480567`*^9, 3.9062028754105673`*^9}, 
+   3.906202976293001*^9, 3.9062031042769656`*^9, 3.9062036042952013`*^9, 
+   3.9062036635819025`*^9, {3.906203708411614*^9, 3.906203724217639*^9}, 
+   3.9062037724189124`*^9, 3.9062038750473647`*^9, 3.9062039110860186`*^9, 
+   3.906203995538246*^9},
+ CellLabel->
+  "Out[393]=",ExpressionUUID->"4bce6573-7315-4cbc-9648-313f5168a741"],
+
+Cell[BoxData[
+ GraphicsBox[InsetBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {"0", "0"},
+      {"0", 
+       RowBox[{"-", "1"}]},
+      {"1", "0"},
+      {
+       RowBox[{"-", "1"}], "0"},
+      {"0", "1"},
+      {"1", "0"},
+      {
+       RowBox[{"-", "1"}], "1"},
+      {
+       RowBox[{"-", "2"}], "1"},
+      {
+       RowBox[{"-", "2"}], "0"},
+      {
+       RowBox[{"-", "1"}], "2"},
+      {"1", "0"},
+      {
+       RowBox[{"-", "2"}], "0"},
+      {
+       RowBox[{"-", "1"}], "1"},
+      {
+       RowBox[{"-", "2"}], "0"},
+      {"2", "0"},
+      {"2", "0"},
+      {
+       RowBox[{"-", "1"}], "2"},
+      {"1", 
+       RowBox[{"-", "1"}]},
+      {"2", "1"},
+      {
+       RowBox[{"-", "1"}], "0"},
+      {"1", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "1"}], "0"},
+      {"0", "0"},
+      {
+       RowBox[{"-", "1"}], "2"},
+      {"2", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "2"}], "2"},
+      {
+       RowBox[{"-", "2"}], "1"},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "3"}], "0"},
+      {"0", "0"},
+      {
+       RowBox[{"-", "3"}], "0"},
+      {"2", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "2"}]},
+      {"3", "1"},
+      {"0", "0"},
+      {
+       RowBox[{"-", "4"}], "0"},
+      {"0", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "4"}], "0"},
+      {"3", 
+       RowBox[{"-", "3"}]},
+      {"2", "2"},
+      {
+       RowBox[{"-", "1"}], "3"},
+      {
+       RowBox[{"-", "3"}], "2"},
+      {"2", 
+       RowBox[{"-", "3"}]},
+      {"1", "2"},
+      {
+       RowBox[{"-", "1"}], "3"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "1"}]},
+      {"0", 
+       RowBox[{"-", "1"}]},
+      {"3", 
+       RowBox[{"-", "2"}]},
+      {"2", "1"},
+      {"0", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "3"}], "2"},
+      {"3", "1"},
+      {"3", 
+       RowBox[{"-", "3"}]},
+      {"1", 
+       RowBox[{"-", "2"}]},
+      {"2", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "3"}], "3"},
+      {
+       RowBox[{"-", "1"}], "0"},
+      {"3", "0"},
+      {"3", 
+       RowBox[{"-", "1"}]},
+      {"4", "0"},
+      {
+       RowBox[{"-", "3"}], "2"},
+      {"3", "2"},
+      {"0", 
+       RowBox[{"-", "2"}]},
+      {"2", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "2"}], "3"},
+      {"1", 
+       RowBox[{"-", "2"}]},
+      {"0", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "1"}], "0"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "2"}]},
+      {"0", 
+       RowBox[{"-", "2"}]},
+      {"2", "2"},
+      {"3", "0"},
+      {
+       RowBox[{"-", "3"}], "4"},
+      {"4", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "3"}], "4"},
+      {"1", "3"},
+      {
+       RowBox[{"-", "3"}], "1"},
+      {
+       RowBox[{"-", "1"}], "3"},
+      {"3", "2"},
+      {"3", "1"},
+      {
+       RowBox[{"-", "2"}], "0"},
+      {"0", "0"},
+      {
+       RowBox[{"-", "1"}], "2"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "2"}]},
+      {"1", 
+       RowBox[{"-", "2"}]},
+      {"3", "1"},
+      {"4", "2"},
+      {
+       RowBox[{"-", "4"}], "0"},
+      {"1", "1"},
+      {
+       RowBox[{"-", "4"}], "0"},
+      {"1", "1"},
+      {"2", "1"},
+      {
+       RowBox[{"-", "1"}], "4"},
+      {"2", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "4"}], "1"},
+      {
+       RowBox[{"-", "2"}], "0"},
+      {
+       RowBox[{"-", "4"}], "2"},
+      {
+       RowBox[{"-", "4"}], "2"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "3"}]},
+      {"3", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "2"}], "1"},
+      {"5", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "1"}], "5"},
+      {"3", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "1"}]},
+      {"3", 
+       RowBox[{"-", "4"}]},
+      {"1", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "2"}]},
+      {"0", "1"},
+      {
+       RowBox[{"-", "3"}], "0"},
+      {"0", "1"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "4"}]},
+      {"2", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "3"}], "2"},
+      {"2", "0"},
+      {
+       RowBox[{"-", "1"}], "5"},
+      {"4", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "1"}]},
+      {"4", "1"},
+      {"3", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "1"}], "2"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "3"}], "2"},
+      {
+       RowBox[{"-", "2"}], "3"},
+      {"0", "0"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "1"}]},
+      {"4", "0"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "3"}], "0"},
+      {"1", 
+       RowBox[{"-", "2"}]},
+      {"3", 
+       RowBox[{"-", "3"}]},
+      {"1", "0"},
+      {"0", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "1"}], "0"},
+      {"4", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "2"}], "0"},
+      {"2", "2"},
+      {"0", "2"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "5"}], "0"},
+      {"4", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "1"}]},
+      {"0", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "2"}], "5"},
+      {
+       RowBox[{"-", "1"}], "3"},
+      {"0", 
+       RowBox[{"-", "3"}]},
+      {"1", "2"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "5"}]},
+      {"3", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "2"}], "3"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "2"}], "1"},
+      {"4", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "4"}], "2"},
+      {
+       RowBox[{"-", "4"}], "0"},
+      {"5", 
+       RowBox[{"-", "3"}]},
+      {"2", 
+       RowBox[{"-", "2"}]},
+      {"2", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "1"}]},
+      {"1", 
+       RowBox[{"-", "3"}]},
+      {"2", "3"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "3"}]},
+      {"0", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "3"}]},
+      {"2", "2"},
+      {"6", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "7"}], "0"},
+      {
+       RowBox[{"-", "2"}], "3"},
+      {"6", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "6"}], "0"},
+      {
+       RowBox[{"-", "7"}], "0"},
+      {"7", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "2"}], "6"},
+      {"0", 
+       RowBox[{"-", "2"}]},
+      {"3", "1"},
+      {"2", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "2"}], "0"},
+      {"7", 
+       RowBox[{"-", "1"}]},
+      {"1", 
+       RowBox[{"-", "3"}]},
+      {"1", "1"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "7"}]},
+      {"1", "4"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "6"}]},
+      {"0", "0"},
+      {"6", 
+       RowBox[{"-", "2"}]},
+      {"5", "2"},
+      {"3", "3"},
+      {"6", 
+       RowBox[{"-", "2"}]},
+      {"0", "5"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "6"}]},
+      {"0", "6"},
+      {"6", "0"},
+      {
+       RowBox[{"-", "4"}], "4"},
+      {"6", "0"},
+      {"2", 
+       RowBox[{"-", "4"}]},
+      {"6", 
+       RowBox[{"-", "3"}]},
+      {"3", "1"},
+      {
+       RowBox[{"-", "4"}], "4"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "2"}], "7"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "6"}]},
+      {"4", "2"},
+      {
+       RowBox[{"-", "4"}], "2"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "7"}]},
+      {"1", "6"},
+      {"1", 
+       RowBox[{"-", "4"}]},
+      {"2", "1"},
+      {"0", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "6"}], "0"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "4"}]},
+      {"2", "3"},
+      {
+       RowBox[{"-", "1"}], "4"},
+      {
+       RowBox[{"-", "4"}], "1"},
+      {"0", "3"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "6"}]},
+      {"0", "6"},
+      {
+       RowBox[{"-", "4"}], "3"},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "2"}], "1"},
+      {"5", "0"},
+      {"1", "3"},
+      {"3", "2"},
+      {"3", "1"},
+      {"1", "1"},
+      {
+       RowBox[{"-", "4"}], "1"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "7"}], "1"},
+      {"6", "1"},
+      {"5", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "1"}], "3"},
+      {"5", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "4"}], "2"},
+      {
+       RowBox[{"-", "3"}], "2"},
+      {
+       RowBox[{"-", "5"}], "3"},
+      {"3", 
+       RowBox[{"-", "1"}]},
+      {"7", 
+       RowBox[{"-", "3"}]},
+      {"2", 
+       RowBox[{"-", "2"}]},
+      {"0", "3"},
+      {
+       RowBox[{"-", "2"}], "6"},
+      {"4", "2"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "4"}], "0"},
+      {"0", "2"},
+      {
+       RowBox[{"-", "6"}], "0"},
+      {"5", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "1"}], "1"},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "3"}], "6"},
+      {
+       RowBox[{"-", "5"}], "1"},
+      {"1", "6"},
+      {"3", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "2"}]},
+      {"5", "2"},
+      {
+       RowBox[{"-", "2"}], "7"},
+      {"4", "0"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "3"}], "3"},
+      {
+       RowBox[{"-", "2"}], "1"},
+      {"4", 
+       RowBox[{"-", "5"}]},
+      {"0", "7"},
+      {"2", "1"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "2"}]},
+      {"2", "2"},
+      {"3", "3"},
+      {
+       RowBox[{"-", "3"}], "1"},
+      {"7", "1"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "1"}], "4"},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "3"}]},
+      {"5", 
+       RowBox[{"-", "4"}]},
+      {"3", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "2"}]},
+      {"7", "1"},
+      {"3", 
+       RowBox[{"-", "4"}]},
+      {"1", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "2"}]},
+      {"8", 
+       RowBox[{"-", "3"}]},
+      {"1", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "7"}]},
+      {"0", "5"},
+      {"7", 
+       RowBox[{"-", "1"}]},
+      {"1", 
+       RowBox[{"-", "1"}]},
+      {"1", "4"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "1"}]},
+      {"3", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "3"}], "2"},
+      {
+       RowBox[{"-", "6"}], "1"},
+      {"1", "6"},
+      {
+       RowBox[{"-", "3"}], "1"},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "1"}], "1"},
+      {"6", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "2"}], "2"},
+      {"5", "2"},
+      {"3", "2"},
+      {"7", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "1"}]},
+      {"0", "1"},
+      {
+       RowBox[{"-", "1"}], "0"},
+      {"4", 
+       RowBox[{"-", "3"}]},
+      {"3", "1"},
+      {"1", 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "8"}], "1"},
+      {"2", 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "1"}]},
+      {"7", "2"},
+      {
+       RowBox[{"-", "8"}], "0"},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "5"}], "2"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "1"}], "5"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "4"}], "1"},
+      {
+       RowBox[{"-", "1"}], "4"},
+      {"2", "3"},
+      {"8", "1"},
+      {
+       RowBox[{"-", "5"}], "0"},
+      {"5", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "2"}], "0"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "6"}], "0"},
+      {"2", 
+       RowBox[{"-", "2"}]},
+      {"7", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "7"}], "1"},
+      {"8", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "8"}]},
+      {"0", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "5"}], "4"},
+      {
+       RowBox[{"-", "1"}], "4"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "5"}], "3"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "3"}]},
+      {"2", "3"},
+      {"1", "1"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "7"}]},
+      {"4", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "4"}], "6"},
+      {"2", "2"},
+      {"0", "0"},
+      {
+       RowBox[{"-", "6"}], "3"},
+      {
+       RowBox[{"-", "1"}], "2"},
+      {"4", "1"},
+      {"8", 
+       RowBox[{"-", "2"}]},
+      {"0", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "6"}]},
+      {"2", "4"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "8"}]},
+      {"0", "0"},
+      {"5", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "5"}], "5"},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "4"}]},
+      {"4", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "8"}]},
+      {"8", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "2"}], "5"},
+      {"1", "6"},
+      {"8", 
+       RowBox[{"-", "3"}]},
+      {"1", 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "3"}]},
+      {"2", 
+       RowBox[{"-", "3"}]},
+      {"3", 
+       RowBox[{"-", "6"}]},
+      {"1", "2"},
+      {"2", "6"},
+      {
+       RowBox[{"-", "2"}], "5"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "2"}]},
+      {"8", 
+       RowBox[{"-", "1"}]},
+      {"2", 
+       RowBox[{"-", "6"}]},
+      {"6", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "4"}], "5"},
+      {"3", "3"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "7"}]},
+      {"5", "0"},
+      {"9", 
+       RowBox[{"-", "3"}]},
+      {"8", 
+       RowBox[{"-", "4"}]},
+      {"8", "2"},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "1"}]},
+      {"5", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "2"}], "3"},
+      {
+       RowBox[{"-", "1"}], "6"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "8"}]},
+      {"2", "1"},
+      {
+       RowBox[{"-", "3"}], "5"},
+      {"7", 
+       RowBox[{"-", "4"}]},
+      {"0", "5"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "1"}]},
+      {"9", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "6"}], "5"},
+      {"8", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "4"}], "3"},
+      {"5", "3"},
+      {"1", 
+       RowBox[{"-", "1"}]},
+      {"2", "1"},
+      {"0", "8"},
+      {"1", 
+       RowBox[{"-", "8"}]},
+      {"2", "6"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "4"}], "1"},
+      {"7", "0"},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "7"}]},
+      {"5", "2"},
+      {
+       RowBox[{"-", "6"}], "1"},
+      {"3", "1"},
+      {"7", 
+       RowBox[{"-", "4"}]},
+      {"0", 
+       RowBox[{"-", "8"}]},
+      {"5", 
+       RowBox[{"-", "4"}]},
+      {"4", 
+       RowBox[{"-", "3"}]},
+      {"3", 
+       RowBox[{"-", "4"}]},
+      {"3", "2"},
+      {"1", "6"},
+      {"8", "0"},
+      {"5", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "3"}], "2"},
+      {"1", 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "8"}], "1"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "3"}]},
+      {"1", "5"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "7"}]},
+      {"6", "1"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "7"}]},
+      {"6", "0"},
+      {"2", 
+       RowBox[{"-", "3"}]},
+      {"3", "3"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "8"}]},
+      {"0", "3"},
+      {"8", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "3"}]},
+      {"3", 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "5"}]},
+      {"8", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "3"}]},
+      {"2", "1"},
+      {"6", "1"},
+      {
+       RowBox[{"-", "9"}], "0"},
+      {"1", "2"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "7"}]},
+      {"2", "2"},
+      {"5", 
+       RowBox[{"-", "6"}]},
+      {"1", "2"},
+      {
+       RowBox[{"-", "3"}], "2"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "10"}], "0"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "7"}]},
+      {"2", "4"},
+      {"3", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "9"}], "0"},
+      {"6", "1"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "3"}]},
+      {"4", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "4"}], "5"},
+      {"2", 
+       RowBox[{"-", "3"}]},
+      {"5", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "1"}]},
+      {"2", 
+       RowBox[{"-", "2"}]},
+      {"5", "3"},
+      {
+       RowBox[{"-", "5"}], "4"},
+      {
+       RowBox[{"-", "3"}], "6"},
+      {
+       RowBox[{"-", "1"}], "7"},
+      {"1", 
+       RowBox[{"-", "2"}]},
+      {"8", "1"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "6"}]},
+      {"2", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "6"}]},
+      {"1", 
+       RowBox[{"-", "5"}]},
+      {"3", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "5"}]},
+      {"2", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "1"}]},
+      {"3", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "3"}], "6"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "2"}], "4"},
+      {
+       RowBox[{"-", "4"}], "4"},
+      {"6", "3"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "10"}], "1"},
+      {"1", 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "1"}]},
+      {"0", 
+       RowBox[{"-", "2"}]},
+      {"4", "2"},
+      {
+       RowBox[{"-", "3"}], "5"},
+      {
+       RowBox[{"-", "7"}], "2"},
+      {"1", "1"},
+      {"9", "2"},
+      {"4", "1"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "1"}], "2"},
+      {
+       RowBox[{"-", "2"}], "1"},
+      {
+       RowBox[{"-", "8"}], "2"},
+      {
+       RowBox[{"-", "11"}], "0"},
+      {"9", "1"},
+      {"7", "0"},
+      {
+       RowBox[{"-", "3"}], "6"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "5"}]},
+      {"7", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "10"}], "0"},
+      {"10", 
+       RowBox[{"-", "3"}]},
+      {"1", "6"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "3"}], "7"},
+      {"0", "7"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "1"}]},
+      {"0", 
+       RowBox[{"-", "7"}]},
+      {"5", 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "1"}], "4"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "8"}], "1"},
+      {
+       RowBox[{"-", "3"}], "7"},
+      {"7", "1"},
+      {"0", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "7"}]},
+      {"2", "6"},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "1"}]},
+      {"5", 
+       RowBox[{"-", "5"}]},
+      {"1", 
+       RowBox[{"-", "4"}]},
+      {"0", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "2"}], "6"},
+      {
+       RowBox[{"-", "7"}], "1"},
+      {"0", 
+       RowBox[{"-", "1"}]},
+      {"0", "5"},
+      {
+       RowBox[{"-", "3"}], "3"},
+      {"1", "8"},
+      {
+       RowBox[{"-", "4"}], "1"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "7"}]},
+      {"0", 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "1"}]},
+      {"1", "8"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "3"}], "2"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "1"}]},
+      {"3", 
+       RowBox[{"-", "4"}]},
+      {"2", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "2"}]},
+      {"6", "2"},
+      {
+       RowBox[{"-", "3"}], "6"},
+      {"1", "5"},
+      {
+       RowBox[{"-", "6"}], "4"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "4"}]},
+      {"7", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "13"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "4"}], "7"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "4"}]},
+      {"4", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "3"}]},
+      {"9", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "5"}]},
+      {"2", 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "8"}]},
+      {"8", 
+       RowBox[{"-", "2"}]},
+      {"2", "4"},
+      {"10", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "4"}], "1"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "6"}], "5"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "8"}]},
+      {"1", "3"},
+      {
+       RowBox[{"-", "1"}], "3"},
+      {"2", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "8"}]},
+      {"5", 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "4"}]},
+      {"8", "2"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "9"}]},
+      {"3", "6"},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "4"}], "0"},
+      {"1", "9"},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "3"}]},
+      {"1", 
+       RowBox[{"-", "5"}]},
+      {"2", "9"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "4"}], "3"},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "4"}], "2"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "8"}], "2"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "9"}]},
+      {"1", "7"},
+      {"1", 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "5"}]},
+      {"6", 
+       RowBox[{"-", "5"}]},
+      {"5", 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "7"}]},
+      {"0", "9"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "1"}], "6"},
+      {
+       RowBox[{"-", "4"}], "5"},
+      {
+       RowBox[{"-", "5"}], "0"},
+      {
+       RowBox[{"-", "2"}], "4"},
+      {"0", 
+       RowBox[{"-", "9"}]},
+      {"6", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "4"}], "0"},
+      {
+       RowBox[{"-", "1"}], "4"},
+      {"0", "5"},
+      {"5", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "2"}], "3"},
+      {"9", "2"},
+      {
+       RowBox[{"-", "10"}], "2"},
+      {"3", 
+       RowBox[{"-", "7"}]},
+      {"0", "7"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "4"}]},
+      {"2", "8"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "6"}]},
+      {"3", "1"},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "9"}], "0"},
+      {"7", "1"},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "5"}], "5"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "7"}]},
+      {"0", 
+       RowBox[{"-", "6"}]},
+      {"4", "1"},
+      {"3", "9"},
+      {"0", 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "1"}]},
+      {"2", "10"},
+      {
+       RowBox[{"-", "3"}], "2"},
+      {
+       RowBox[{"-", "11"}], "2"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "3"}], "6"},
+      {
+       RowBox[{"-", "10"}], "0"},
+      {"6", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "3"}], "0"},
+      {"3", "0"},
+      {"0", 
+       RowBox[{"-", "9"}]},
+      {"1", "0"},
+      {
+       RowBox[{"-", "7"}], "3"},
+      {"0", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "10"}], "3"},
+      {"0", "6"},
+      {
+       RowBox[{"-", "4"}], "1"},
+      {"3", "10"},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "7"}]},
+      {"10", "1"},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "10"}], "4"},
+      {"4", "9"},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "3"}]},
+      {"9", 
+       RowBox[{"-", "2"}]},
+      {"3", 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "1"}], "0"},
+      {
+       RowBox[{"-", "4"}], "6"},
+      {"1", 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "11"}], "3"},
+      {"4", 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "9"}], "2"},
+      {
+       RowBox[{"-", "13"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "7"}], "5"},
+      {"6", "1"},
+      {"9", 
+       RowBox[{"-", "2"}]},
+      {"8", "2"},
+      {
+       RowBox[{"-", "4"}], "0"},
+      {"1", "7"},
+      {"2", "10"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "1"}]},
+      {"1", 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "10"}]},
+      {"5", 
+       RowBox[{"-", "3"}]},
+      {"7", "1"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "11"}], "1"},
+      {"6", "0"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "13"}], "0"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "8"}]},
+      {"10", "2"},
+      {"2", "8"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "5"}], "4"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "1"}], "3"},
+      {
+       RowBox[{"-", "8"}], "3"},
+      {"7", "2"},
+      {"0", "8"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "5"}], "4"},
+      {"0", 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "3"}], "5"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "10"}], "2"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "8"}], "5"},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "3"}]},
+      {"7", 
+       RowBox[{"-", "1"}]},
+      {"1", "4"},
+      {"10", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "7"}], "3"},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "4"}]},
+      {"6", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "10"}], "0"},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "12"}], "0"},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "7"}]},
+      {"10", "1"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "4"}], "6"},
+      {"5", "3"},
+      {"11", "2"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "7"}]},
+      {"8", "0"},
+      {"9", "1"},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "7"}]},
+      {"10", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "1"}], "2"},
+      {"2", 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "7"}], "6"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "3"}]},
+      {"2", 
+       RowBox[{"-", "7"}]},
+      {"0", "1"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "9"}]},
+      {"2", "11"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "3"}]},
+      {"7", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "4"}], "0"},
+      {"4", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "1"}], "4"},
+      {"2", "12"},
+      {"3", "12"},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "6"}]},
+      {"3", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "8"}]},
+      {"0", 
+       RowBox[{"-", "5"}]},
+      {"10", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "3"}], "6"},
+      {"3", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "3"}], "7"},
+      {"1", 
+       RowBox[{"-", "1"}]},
+      {"5", "9"},
+      {
+       RowBox[{"-", "13"}], 
+       RowBox[{"-", "2"}]},
+      {"4", 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "2"}], "5"},
+      {"3", "4"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "3"}]},
+      {"3", "12"},
+      {
+       RowBox[{"-", "4"}], "8"},
+      {"2", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "2"}], "6"},
+      {
+       RowBox[{"-", "11"}], "3"},
+      {
+       RowBox[{"-", "4"}], "8"},
+      {"2", 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "2"}], "0"},
+      {"3", "9"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "10"}]},
+      {"3", 
+       RowBox[{"-", "1"}]},
+      {"1", "1"},
+      {"0", "7"},
+      {"9", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "8"}]},
+      {"1", "10"},
+      {
+       RowBox[{"-", "1"}], "6"},
+      {
+       RowBox[{"-", "2"}], "3"},
+      {
+       RowBox[{"-", "13"}], 
+       RowBox[{"-", "2"}]},
+      {"8", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "12"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "9"}], "5"},
+      {
+       RowBox[{"-", "7"}], "3"},
+      {"1", "5"},
+      {"1", "12"},
+      {"0", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "8"}], "0"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "5"}]},
+      {"0", "5"},
+      {"4", 
+       RowBox[{"-", "6"}]},
+      {"1", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "10"}], "4"},
+      {
+       RowBox[{"-", "11"}], "3"},
+      {"2", "11"},
+      {"6", "3"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "7"}]},
+      {"0", "10"},
+      {
+       RowBox[{"-", "8"}], "4"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "6"}], "3"},
+      {
+       RowBox[{"-", "10"}], "4"},
+      {
+       RowBox[{"-", "7"}], "0"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "4"}]},
+      {"1", "11"},
+      {
+       RowBox[{"-", "8"}], "2"},
+      {"1", 
+       RowBox[{"-", "3"}]},
+      {"6", 
+       RowBox[{"-", "5"}]},
+      {"3", "6"},
+      {"3", "11"},
+      {"2", "13"},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "8"}]},
+      {"0", "4"},
+      {"6", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "6"}], "5"},
+      {"5", "0"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "4"}], "6"},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "10"}]},
+      {"6", 
+       RowBox[{"-", "3"}]},
+      {"2", "11"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "4"}]},
+      {"3", "7"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "14"}], 
+       RowBox[{"-", "2"}]},
+      {"2", "2"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "8"}]},
+      {"4", "4"},
+      {
+       RowBox[{"-", "11"}], "1"},
+      {"2", "3"},
+      {"6", "1"},
+      {"6", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "11"}]},
+      {"0", "2"},
+      {"3", "3"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "8"}]},
+      {"2", "2"},
+      {"4", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "13"}]},
+      {
+       RowBox[{"-", "8"}], "0"},
+      {"3", "11"},
+      {"3", 
+       RowBox[{"-", "1"}]},
+      {"10", "1"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "8"}]},
+      {"7", "1"},
+      {"2", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "4"}]},
+      {"3", "2"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "7"}]},
+      {"1", 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "10"}], "0"},
+      {
+       RowBox[{"-", "5"}], "4"},
+      {"1", 
+       RowBox[{"-", "9"}]},
+      {"4", 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "1"}], "10"},
+      {"1", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "5"}], "1"},
+      {"7", "0"},
+      {"2", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "11"}], "3"},
+      {"1", "12"},
+      {"4", 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "5"}], "1"},
+      {
+       RowBox[{"-", "2"}], "6"},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "7"}]},
+      {"0", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "2"}]},
+      {"0", 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "4"}], "2"},
+      {
+       RowBox[{"-", "2"}], "5"},
+      {
+       RowBox[{"-", "4"}], "0"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "6"}], "6"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "4"}]},
+      {"3", "12"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "14"}], 
+       RowBox[{"-", "2"}]},
+      {"9", "2"},
+      {"0", "7"},
+      {"8", 
+       RowBox[{"-", "1"}]},
+      {"4", 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "1"}], "10"},
+      {
+       RowBox[{"-", "1"}], "1"},
+      {
+       RowBox[{"-", "8"}], "2"},
+      {"12", "2"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "6"}]},
+      {"0", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "14"}], "0"},
+      {"4", "4"},
+      {"8", 
+       RowBox[{"-", "1"}]},
+      {"4", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "5"}]},
+      {"3", 
+       RowBox[{"-", "10"}]},
+      {"1", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "8"}]},
+      {"0", "11"},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "8"}]},
+      {"2", 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "1"}]},
+      {"3", "4"},
+      {
+       RowBox[{"-", "3"}], "6"},
+      {
+       RowBox[{"-", "15"}], 
+       RowBox[{"-", "2"}]},
+      {"5", 
+       RowBox[{"-", "4"}]},
+      {"4", 
+       RowBox[{"-", "1"}]},
+      {"0", 
+       RowBox[{"-", "5"}]},
+      {"2", 
+       RowBox[{"-", "12"}]},
+      {
+       RowBox[{"-", "2"}], "1"},
+      {
+       RowBox[{"-", "15"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "15"}], 
+       RowBox[{"-", "3"}]},
+      {"7", 
+       RowBox[{"-", "5"}]},
+      {"9", "1"},
+      {"4", "8"},
+      {"6", "0"},
+      {"4", "0"},
+      {
+       RowBox[{"-", "5"}], "4"},
+      {"9", "1"},
+      {
+       RowBox[{"-", "6"}], "0"},
+      {"3", 
+       RowBox[{"-", "6"}]},
+      {"4", "9"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "14"}], "0"},
+      {
+       RowBox[{"-", "8"}], "3"},
+      {
+       RowBox[{"-", "1"}], "1"},
+      {
+       RowBox[{"-", "5"}], "8"},
+      {"0", 
+       RowBox[{"-", "5"}]},
+      {"2", 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "1"}], "4"},
+      {"12", "2"},
+      {"12", "1"},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "8"}]},
+      {"1", 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "1"}]},
+      {"6", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "3"}]},
+      {"1", "3"},
+      {"0", 
+       RowBox[{"-", "11"}]},
+      {"7", "2"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "5"}], "0"},
+      {"9", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "5"}], "1"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "8"}]},
+      {"4", 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "11"}], "3"},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "8"}], "2"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "2"}]},
+      {"5", "0"},
+      {"3", "12"},
+      {
+       RowBox[{"-", "14"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "11"}], "2"},
+      {"5", "3"},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "5"}]},
+      {"12", "0"},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "4"}]},
+      {"5", 
+       RowBox[{"-", "9"}]},
+      {"4", "3"},
+      {
+       RowBox[{"-", "2"}], "3"},
+      {"2", "6"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "8"}]},
+      {"5", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "4"}]},
+      {"6", "1"},
+      {"2", "4"},
+      {
+       RowBox[{"-", "15"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "7"}], "3"},
+      {"6", 
+       RowBox[{"-", "3"}]},
+      {"0", "9"},
+      {
+       RowBox[{"-", "1"}], "1"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "13"}], "0"},
+      {"11", "3"},
+      {"5", "10"},
+      {
+       RowBox[{"-", "9"}], "3"},
+      {
+       RowBox[{"-", "13"}], 
+       RowBox[{"-", "2"}]},
+      {"4", 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "12"}]},
+      {"10", 
+       RowBox[{"-", "3"}]},
+      {"5", "0"},
+      {
+       RowBox[{"-", "10"}], "0"},
+      {
+       RowBox[{"-", "6"}], "1"},
+      {"9", 
+       RowBox[{"-", "3"}]},
+      {"4", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "12"}], "1"},
+      {"0", "4"},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "3"}]},
+      {"1", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "11"}], "4"},
+      {
+       RowBox[{"-", "9"}], "5"},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "3"}]},
+      {"3", "10"},
+      {
+       RowBox[{"-", "4"}], "6"},
+      {"0", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "11"}]},
+      {"0", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "13"}], 
+       RowBox[{"-", "4"}]},
+      {"2", "3"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "10"}]},
+      {"4", 
+       RowBox[{"-", "9"}]},
+      {"10", "3"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "4"}]},
+      {"0", "9"},
+      {"6", "1"},
+      {"3", 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "8"}], "0"},
+      {"1", 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "5"}], "4"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "9"}]},
+      {"3", 
+       RowBox[{"-", "8"}]},
+      {"1", 
+       RowBox[{"-", "8"}]},
+      {"2", "1"},
+      {"11", "3"},
+      {
+       RowBox[{"-", "6"}], "6"},
+      {"1", "8"},
+      {"1", "0"},
+      {"11", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "5"}], "1"},
+      {
+       RowBox[{"-", "3"}], "0"},
+      {"8", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "1"}]},
+      {"3", "11"},
+      {
+       RowBox[{"-", "2"}], "2"},
+      {
+       RowBox[{"-", "11"}], "1"},
+      {"6", "2"},
+      {"4", 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "11"}], "5"},
+      {
+       RowBox[{"-", "13"}], 
+       RowBox[{"-", "2"}]},
+      {"10", "3"},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "1"}]},
+      {"5", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "1"}]},
+      {"2", "3"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "12"}]},
+      {
+       RowBox[{"-", "2"}], "2"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "2"}], "1"},
+      {
+       RowBox[{"-", "2"}], "7"},
+      {
+       RowBox[{"-", "14"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "15"}], 
+       RowBox[{"-", "4"}]},
+      {"5", "0"},
+      {"13", "1"},
+      {"13", "1"},
+      {
+       RowBox[{"-", "4"}], "4"},
+      {"0", 
+       RowBox[{"-", "10"}]},
+      {"6", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "9"}], "3"},
+      {
+       RowBox[{"-", "8"}], "3"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "13"}], 
+       RowBox[{"-", "3"}]},
+      {"5", "8"},
+      {"3", "0"},
+      {"3", 
+       RowBox[{"-", "10"}]},
+      {"3", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "7"}]},
+      {"13", "2"},
+      {
+       RowBox[{"-", "6"}], "2"},
+      {"3", 
+       RowBox[{"-", "3"}]},
+      {"7", 
+       RowBox[{"-", "6"}]},
+      {"5", "11"},
+      {
+       RowBox[{"-", "6"}], "2"},
+      {"7", "3"},
+      {
+       RowBox[{"-", "5"}], "7"},
+      {
+       RowBox[{"-", "6"}], "7"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "5"}], "2"},
+      {
+       RowBox[{"-", "6"}], "0"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "5"}]},
+      {"6", "0"},
+      {"0", 
+       RowBox[{"-", "9"}]},
+      {"10", "4"},
+      {"3", "5"},
+      {"2", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "3"}], "6"},
+      {"5", 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "5"}]},
+      {"1", "4"},
+      {
+       RowBox[{"-", "1"}], "2"},
+      {"2", "4"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "1"}]},
+      {"6", "2"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "14"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "5"}], "4"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "10"}]},
+      {"2", "12"},
+      {"10", "1"},
+      {"2", 
+       RowBox[{"-", "12"}]},
+      {"5", 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "6"}]},
+      {"12", "2"},
+      {
+       RowBox[{"-", "3"}], "1"},
+      {"0", "9"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "11"}]},
+      {"6", 
+       RowBox[{"-", "9"}]},
+      {"0", 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "2"}]},
+      {"1", 
+       RowBox[{"-", "9"}]},
+      {"6", "10"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "10"}]},
+      {"1", "10"},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "6"}]},
+      {"5", "0"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "1"}], "1"},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "15"}], 
+       RowBox[{"-", "2"}]},
+      {"9", "2"},
+      {"11", "2"},
+      {"4", 
+       RowBox[{"-", "9"}]},
+      {"1", 
+       RowBox[{"-", "10"}]},
+      {"9", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "8"}], "2"},
+      {
+       RowBox[{"-", "9"}], "6"},
+      {
+       RowBox[{"-", "2"}], "7"},
+      {"4", "6"},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "5"}], "3"},
+      {"4", "2"},
+      {
+       RowBox[{"-", "16"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "16"}], 
+       RowBox[{"-", "4"}]},
+      {"0", 
+       RowBox[{"-", "3"}]},
+      {"3", "10"},
+      {"6", 
+       RowBox[{"-", "6"}]},
+      {"0", 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "9"}], "3"},
+      {"6", 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "10"}]},
+      {"9", "4"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "4"}]},
+      {"2", "13"},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "7"}]},
+      {"11", "0"},
+      {"2", "13"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "5"}], "1"},
+      {
+       RowBox[{"-", "6"}], "6"},
+      {"3", "9"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "14"}], "0"},
+      {"7", "1"},
+      {"2", 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "13"}]},
+      {
+       RowBox[{"-", "14"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "11"}], "4"},
+      {"1", "4"},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "9"}], "0"},
+      {"3", 
+       RowBox[{"-", "2"}]},
+      {"6", 
+       RowBox[{"-", "1"}]},
+      {"6", 
+       RowBox[{"-", "6"}]},
+      {"6", "0"},
+      {"7", 
+       RowBox[{"-", "9"}]},
+      {"4", "6"},
+      {
+       RowBox[{"-", "13"}], 
+       RowBox[{"-", "1"}]},
+      {"4", 
+       RowBox[{"-", "7"}]},
+      {"3", "10"},
+      {
+       RowBox[{"-", "10"}], "2"},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "2"}]},
+      {"6", "11"},
+      {"3", "0"},
+      {"7", "0"},
+      {
+       RowBox[{"-", "10"}], "6"},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "2"}]},
+      {"2", "7"},
+      {
+       RowBox[{"-", "11"}], "3"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "1"}]},
+      {"14", "1"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "8"}], "1"},
+      {"1", 
+       RowBox[{"-", "5"}]},
+      {"7", 
+       RowBox[{"-", "4"}]},
+      {"6", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "1"}], "11"},
+      {"1", "1"},
+      {
+       RowBox[{"-", "16"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "13"}], "0"},
+      {"0", "7"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "4"}], "4"},
+      {"4", "6"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "4"}]},
+      {"0", "3"},
+      {"4", "12"},
+      {
+       RowBox[{"-", "13"}], 
+       RowBox[{"-", "2"}]},
+      {"11", "2"},
+      {
+       RowBox[{"-", "10"}], "5"},
+      {"4", 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "11"}], "3"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "12"}]},
+      {"2", 
+       RowBox[{"-", "3"}]},
+      {"0", "0"},
+      {"6", 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "1"}], "4"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "7"}]},
+      {"8", 
+       RowBox[{"-", "3"}]},
+      {"0", 
+       RowBox[{"-", "10"}]},
+      {"5", "6"},
+      {"6", "1"},
+      {"13", "2"},
+      {"3", 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "2"}]},
+      {"3", 
+       RowBox[{"-", "6"}]},
+      {"3", "9"},
+      {"11", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "1"}], "7"},
+      {"6", 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "8"}]},
+      {"10", "4"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "11"}]},
+      {"7", "10"},
+      {"5", "8"},
+      {"3", "2"},
+      {"2", 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "2"}], "11"},
+      {
+       RowBox[{"-", "10"}], "2"},
+      {"6", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "12"}], "3"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "9"}]},
+      {"9", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "17"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "2"}], "11"},
+      {
+       RowBox[{"-", "10"}], "3"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "12"}]},
+      {"9", "1"},
+      {"0", "10"},
+      {
+       RowBox[{"-", "1"}], "11"},
+      {
+       RowBox[{"-", "9"}], "7"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "2"}]},
+      {"2", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "9"}]},
+      {"10", "5"},
+      {"1", "3"},
+      {
+       RowBox[{"-", "9"}], "6"},
+      {"2", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "1"}]},
+      {"9", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "6"}]},
+      {"6", "0"},
+      {"2", 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "13"}], "0"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "16"}], 
+       RowBox[{"-", "2"}]},
+      {"7", "4"},
+      {"1", 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "8"}], "1"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "7"}]},
+      {"6", "10"},
+      {"7", "10"},
+      {"10", 
+       RowBox[{"-", "2"}]},
+      {"0", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "14"}], 
+       RowBox[{"-", "2"}]},
+      {"3", 
+       RowBox[{"-", "2"}]},
+      {"14", "1"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "3"}]},
+      {"6", 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "1"}], "6"},
+      {"1", "10"},
+      {"0", "8"},
+      {"7", 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "3"}], "6"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "5"}], "6"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "1"}]},
+      {"8", 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "17"}], 
+       RowBox[{"-", "6"}]},
+      {"7", 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "1"}], "3"},
+      {
+       RowBox[{"-", "7"}], "1"},
+      {
+       RowBox[{"-", "14"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "6"}], "4"},
+      {"4", "13"},
+      {"2", "2"},
+      {"3", 
+       RowBox[{"-", "6"}]},
+      {"3", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "13"}], "3"},
+      {"6", "0"},
+      {"2", "3"},
+      {"6", 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "2"}], "4"},
+      {"5", 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "11"}]},
+      {"6", 
+       RowBox[{"-", "3"}]},
+      {"11", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "5"}], "9"},
+      {"4", "12"},
+      {
+       RowBox[{"-", "13"}], "2"},
+      {"2", 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "13"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "5"}], "8"},
+      {"2", 
+       RowBox[{"-", "6"}]},
+      {"5", "10"},
+      {"9", 
+       RowBox[{"-", "2"}]},
+      {"0", 
+       RowBox[{"-", "7"}]},
+      {"3", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "11"}], "3"},
+      {"1", 
+       RowBox[{"-", "10"}]},
+      {"7", 
+       RowBox[{"-", "12"}]},
+      {"6", 
+       RowBox[{"-", "12"}]},
+      {
+       RowBox[{"-", "5"}], "10"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "7"}]},
+      {"7", "2"},
+      {"2", "7"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "14"}], "2"},
+      {"10", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "4"}], "7"},
+      {"2", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "9"}], "5"},
+      {
+       RowBox[{"-", "16"}], "0"},
+      {
+       RowBox[{"-", "7"}], "7"},
+      {
+       RowBox[{"-", "8"}], "1"},
+      {"1", "12"},
+      {
+       RowBox[{"-", "4"}], "10"},
+      {
+       RowBox[{"-", "12"}], "1"},
+      {
+       RowBox[{"-", "6"}], "7"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "5"}]},
+      {"1", 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "9"}], "2"},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "8"}]},
+      {"3", "7"},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "5"}], "2"},
+      {"14", "1"},
+      {"4", "13"},
+      {"5", 
+       RowBox[{"-", "7"}]},
+      {"5", "13"},
+      {"1", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "6"}], "5"},
+      {
+       RowBox[{"-", "2"}], "12"},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "5"}]},
+      {"3", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "13"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "1"}]},
+      {"6", "11"},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "3"}], "1"},
+      {"3", "11"},
+      {
+       RowBox[{"-", "10"}], "7"},
+      {"2", 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "1"}]},
+      {"1", "0"},
+      {"5", "4"},
+      {
+       RowBox[{"-", "1"}], "2"},
+      {"5", "2"},
+      {
+       RowBox[{"-", "13"}], "3"},
+      {"3", "8"},
+      {"2", "4"},
+      {
+       RowBox[{"-", "17"}], "0"},
+      {"10", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "15"}], 
+       RowBox[{"-", "4"}]},
+      {"0", 
+       RowBox[{"-", "8"}]},
+      {"5", 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "5"}], "2"},
+      {"7", 
+       RowBox[{"-", "12"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "10"}]},
+      {"4", "4"},
+      {"8", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "12"}]},
+      {
+       RowBox[{"-", "2"}], "0"},
+      {"2", "14"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "8"}], "6"},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "3"}]},
+      {"5", "3"},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "16"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "4"}], "0"},
+      {
+       RowBox[{"-", "15"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "12"}]},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "16"}], 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "10"}], "3"},
+      {
+       RowBox[{"-", "4"}], "10"},
+      {"0", "7"},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "12"}]},
+      {
+       RowBox[{"-", "13"}], "2"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "13"}]},
+      {"9", 
+       RowBox[{"-", "3"}]},
+      {"7", "4"},
+      {"3", 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "4"}]},
+      {"13", "1"},
+      {
+       RowBox[{"-", "3"}], "12"},
+      {
+       RowBox[{"-", "1"}], "2"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "13"}]},
+      {"6", 
+       RowBox[{"-", "13"}]},
+      {"7", 
+       RowBox[{"-", "5"}]},
+      {"4", "6"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "13"}]},
+      {"6", 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "9"}], "5"},
+      {
+       RowBox[{"-", "3"}], "10"},
+      {"2", "11"},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "11"}]},
+      {"3", 
+       RowBox[{"-", "12"}]},
+      {
+       RowBox[{"-", "17"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "3"}]},
+      {"5", 
+       RowBox[{"-", "3"}]},
+      {"2", "9"},
+      {"10", "0"},
+      {"4", "6"},
+      {"4", "14"},
+      {"5", "10"},
+      {"3", "4"},
+      {"5", 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "7"}]},
+      {"12", "1"},
+      {"9", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "14"}]},
+      {"5", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "12"}]},
+      {
+       RowBox[{"-", "14"}], 
+       RowBox[{"-", "2"}]},
+      {"3", 
+       RowBox[{"-", "3"}]},
+      {"4", "2"},
+      {"1", "7"},
+      {"11", "4"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "6"}]},
+      {"4", "6"},
+      {"10", "5"},
+      {"9", 
+       RowBox[{"-", "2"}]},
+      {"0", "0"},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "14"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "5"}]},
+      {"5", "6"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "10"}]},
+      {"7", "10"},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "3"}]},
+      {"7", 
+       RowBox[{"-", "10"}]},
+      {"7", 
+       RowBox[{"-", "3"}]},
+      {"2", "14"},
+      {"2", "15"},
+      {"13", "3"},
+      {
+       RowBox[{"-", "6"}], "4"},
+      {
+       RowBox[{"-", "1"}], "11"},
+      {"6", 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "13"}]},
+      {"3", 
+       RowBox[{"-", "8"}]},
+      {"8", "10"},
+      {
+       RowBox[{"-", "13"}], "1"},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "1"}], "7"},
+      {"1", 
+       RowBox[{"-", "2"}]},
+      {"4", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "14"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "12"}]},
+      {"9", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "4"}], "11"},
+      {
+       RowBox[{"-", "2"}], "6"},
+      {"7", 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "10"}]},
+      {"3", 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "15"}], 
+       RowBox[{"-", "1"}]},
+      {"5", 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "13"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "6"}], "4"},
+      {"5", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "14"}]},
+      {
+       RowBox[{"-", "9"}], "8"},
+      {"0", 
+       RowBox[{"-", "9"}]},
+      {"8", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "15"}]},
+      {"8", 
+       RowBox[{"-", "6"}]},
+      {"3", "8"},
+      {
+       RowBox[{"-", "3"}], "7"},
+      {
+       RowBox[{"-", "16"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "9"}]},
+      {"1", 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "2"}], "6"},
+      {
+       RowBox[{"-", "13"}], "0"},
+      {
+       RowBox[{"-", "12"}], "2"},
+      {"10", "1"},
+      {"12", 
+       RowBox[{"-", "5"}]},
+      {"1", 
+       RowBox[{"-", "10"}]},
+      {"10", "6"},
+      {"7", "4"},
+      {"2", "13"},
+      {
+       RowBox[{"-", "12"}], "4"},
+      {
+       RowBox[{"-", "3"}], "3"},
+      {"4", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "11"}]},
+      {"4", "8"},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "8"}], "1"},
+      {"9", 
+       RowBox[{"-", "5"}]},
+      {"3", "2"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "1"}]},
+      {"2", 
+       RowBox[{"-", "12"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "15"}]},
+      {"12", 
+       RowBox[{"-", "2"}]},
+      {"7", "4"},
+      {
+       RowBox[{"-", "5"}], "9"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "4"}], "1"},
+      {
+       RowBox[{"-", "15"}], 
+       RowBox[{"-", "3"}]},
+      {"2", "16"},
+      {"12", 
+       RowBox[{"-", "1"}]},
+      {"1", "10"},
+      {
+       RowBox[{"-", "13"}], "0"},
+      {"3", 
+       RowBox[{"-", "13"}]},
+      {"1", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "5"}]},
+      {"1", "15"},
+      {
+       RowBox[{"-", "4"}], "2"},
+      {"4", "10"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "4"}]},
+      {"1", "16"},
+      {
+       RowBox[{"-", "16"}], "0"},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "3"}], "3"},
+      {"12", 
+       RowBox[{"-", "6"}]},
+      {"2", "9"},
+      {"8", 
+       RowBox[{"-", "12"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "3"}], "11"},
+      {"9", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "5"}], "11"},
+      {
+       RowBox[{"-", "18"}], "0"},
+      {"9", 
+       RowBox[{"-", "2"}]},
+      {"10", "7"},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "6"}]},
+      {"1", "4"},
+      {
+       RowBox[{"-", "10"}], "0"},
+      {"5", "12"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "4"}]},
+      {"3", "7"},
+      {"5", 
+       RowBox[{"-", "4"}]},
+      {"9", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "10"}], "3"},
+      {"6", "4"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "3"}]},
+      {"1", 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "17"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "11"}], "0"},
+      {
+       RowBox[{"-", "5"}], "0"},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "7"}]},
+      {"4", "8"},
+      {
+       RowBox[{"-", "9"}], "4"},
+      {"8", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "13"}]},
+      {
+       RowBox[{"-", "2"}], "4"},
+      {"3", "16"},
+      {"3", 
+       RowBox[{"-", "5"}]},
+      {"14", "1"},
+      {"5", "1"},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "9"}]},
+      {"1", "5"},
+      {
+       RowBox[{"-", "12"}], "5"},
+      {"4", "4"},
+      {"4", "14"},
+      {
+       RowBox[{"-", "13"}], "4"},
+      {"7", 
+       RowBox[{"-", "7"}]},
+      {"5", 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "17"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "14"}], "3"},
+      {
+       RowBox[{"-", "9"}], "0"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "9"}]},
+      {"6", "10"},
+      {
+       RowBox[{"-", "4"}], "2"},
+      {
+       RowBox[{"-", "12"}], "0"},
+      {"7", 
+       RowBox[{"-", "6"}]},
+      {"8", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "14"}]},
+      {
+       RowBox[{"-", "7"}], "8"},
+      {
+       RowBox[{"-", "3"}], "1"},
+      {
+       RowBox[{"-", "2"}], "1"},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "1"}], "3"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "12"}]},
+      {"1", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "19"}], "0"},
+      {"6", 
+       RowBox[{"-", "10"}]},
+      {"2", 
+       RowBox[{"-", "9"}]},
+      {"12", 
+       RowBox[{"-", "5"}]},
+      {"13", 
+       RowBox[{"-", "1"}]},
+      {"10", "7"},
+      {
+       RowBox[{"-", "8"}], "6"},
+      {"11", "4"},
+      {"6", "11"},
+      {
+       RowBox[{"-", "2"}], "2"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "6"}]},
+      {"5", 
+       RowBox[{"-", "4"}]},
+      {"0", "5"},
+      {"4", 
+       RowBox[{"-", "5"}]},
+      {"3", 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "14"}], "4"},
+      {"1", 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "2"}]},
+      {"3", "17"},
+      {"2", "17"},
+      {"12", 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "8"}]},
+      {"2", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "5"}], "4"},
+      {
+       RowBox[{"-", "8"}], "0"},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "2"}], "4"},
+      {
+       RowBox[{"-", "14"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "12"}]},
+      {"2", "5"},
+      {
+       RowBox[{"-", "6"}], "0"},
+      {
+       RowBox[{"-", "1"}], "11"},
+      {"7", 
+       RowBox[{"-", "6"}]},
+      {"0", "0"},
+      {"4", 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "1"}]},
+      {"2", "10"},
+      {"9", 
+       RowBox[{"-", "5"}]},
+      {"2", "14"},
+      {"3", "2"},
+      {"2", 
+       RowBox[{"-", "12"}]},
+      {
+       RowBox[{"-", "14"}], "1"},
+      {
+       RowBox[{"-", "3"}], "4"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "12"}]},
+      {"10", "5"},
+      {"3", "1"},
+      {"3", 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "2"}], "3"},
+      {"10", "7"},
+      {"4", "6"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "6"}], "9"},
+      {"12", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "6"}]},
+      {"8", "9"},
+      {"12", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "14"}], "4"},
+      {"12", 
+       RowBox[{"-", "7"}]},
+      {"2", 
+       RowBox[{"-", "11"}]},
+      {"12", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "11"}]},
+      {"6", "13"},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "14"}]},
+      {
+       RowBox[{"-", "17"}], 
+       RowBox[{"-", "6"}]},
+      {"2", "4"},
+      {
+       RowBox[{"-", "8"}], "4"},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "7"}]},
+      {"5", 
+       RowBox[{"-", "2"}]},
+      {"8", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "13"}]},
+      {
+       RowBox[{"-", "13"}], 
+       RowBox[{"-", "5"}]},
+      {"13", "0"},
+      {"8", "3"},
+      {"14", "3"},
+      {
+       RowBox[{"-", "18"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "16"}], "1"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "8"}]},
+      {"12", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "10"}]},
+      {"15", "1"},
+      {
+       RowBox[{"-", "9"}], "1"},
+      {
+       RowBox[{"-", "17"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "13"}], "5"},
+      {"0", "1"},
+      {"6", "14"},
+      {"3", 
+       RowBox[{"-", "5"}]},
+      {"1", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "14"}], 
+       RowBox[{"-", "4"}]},
+      {"9", "6"},
+      {"3", 
+       RowBox[{"-", "10"}]},
+      {"13", 
+       RowBox[{"-", "2"}]},
+      {"2", 
+       RowBox[{"-", "9"}]},
+      {
+       RowBox[{"-", "7"}], "5"},
+      {
+       RowBox[{"-", "12"}], "0"},
+      {
+       RowBox[{"-", "1"}], "2"},
+      {
+       RowBox[{"-", "4"}], "1"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "15"}]},
+      {"14", "4"},
+      {"4", 
+       RowBox[{"-", "7"}]},
+      {"9", "3"},
+      {"11", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "16"}]},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "13"}]},
+      {
+       RowBox[{"-", "5"}], 
+       RowBox[{"-", "8"}]},
+      {"3", 
+       RowBox[{"-", "14"}]},
+      {"2", "6"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "6"}]},
+      {"1", "12"},
+      {"11", "2"},
+      {
+       RowBox[{"-", "17"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "14"}]},
+      {"5", 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "18"}], 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "4"}], "6"},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "12"}]},
+      {"12", 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "12"}], "1"},
+      {
+       RowBox[{"-", "9"}], "1"},
+      {
+       RowBox[{"-", "18"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "9"}], "6"},
+      {"4", 
+       RowBox[{"-", "13"}]},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "14"}]},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "13"}]},
+      {
+       RowBox[{"-", "4"}], "12"},
+      {
+       RowBox[{"-", "13"}], "6"},
+      {
+       RowBox[{"-", "3"}], "1"},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "15"}]},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "9"}]},
+      {"2", "8"},
+      {"4", "12"},
+      {"14", "1"},
+      {"2", "11"},
+      {
+       RowBox[{"-", "18"}], 
+       RowBox[{"-", "7"}]},
+      {"3", 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "10"}], "6"},
+      {
+       RowBox[{"-", "12"}], 
+       RowBox[{"-", "11"}]},
+      {"11", "4"},
+      {"11", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "13"}], 
+       RowBox[{"-", "5"}]},
+      {"3", "12"},
+      {"1", 
+       RowBox[{"-", "6"}]},
+      {"7", 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "16"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "1"}], "2"},
+      {"10", "1"},
+      {
+       RowBox[{"-", "11"}], "7"},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "12"}], "7"},
+      {
+       RowBox[{"-", "8"}], "7"},
+      {"5", "10"},
+      {
+       RowBox[{"-", "4"}], "7"},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "14"}]},
+      {"4", 
+       RowBox[{"-", "5"}]},
+      {"7", 
+       RowBox[{"-", "6"}]},
+      {"6", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "7"}]},
+      {"5", "9"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "14"}]},
+      {
+       RowBox[{"-", "17"}], "1"},
+      {"5", "13"},
+      {
+       RowBox[{"-", "13"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "17"}]},
+      {"13", "1"},
+      {
+       RowBox[{"-", "18"}], "0"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "5"}], "4"},
+      {"7", "3"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "2"}]},
+      {"14", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "17"}], 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "9"}], "5"},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "13"}], "2"},
+      {
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "5"}]},
+      {"4", 
+       RowBox[{"-", "11"}]},
+      {
+       RowBox[{"-", "10"}], "3"},
+      {"11", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "8"}], "0"},
+      {"3", "9"},
+      {"7", 
+       RowBox[{"-", "8"}]},
+      {"0", 
+       RowBox[{"-", "11"}]},
+      {"14", "3"},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "10"}]},
+      {"0", "8"},
+      {
+       RowBox[{"-", "6"}], "9"},
+      {"6", "1"},
+      {
+       RowBox[{"-", "7"}], "5"},
+      {
+       RowBox[{"-", "11"}], "6"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "9"}]},
+      {"7", "4"},
+      {"9", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "10"}], "2"},
+      {"5", "6"},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "5"}]},
+      {"11", 
+       RowBox[{"-", "1"}]},
+      {"3", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "9"}], "9"},
+      {"12", 
+       RowBox[{"-", "1"}]},
+      {"3", "2"},
+      {
+       RowBox[{"-", "5"}], "5"},
+      {"10", "0"},
+      {"2", "6"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "16"}]},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "9"}]},
+      {"2", "9"},
+      {"13", "4"},
+      {"10", "8"},
+      {
+       RowBox[{"-", "6"}], "10"},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "15"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "13"}], 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "11"}], "3"},
+      {"4", "4"},
+      {
+       RowBox[{"-", "12"}], "3"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "15"}]},
+      {"6", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "7"}], 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "14"}]},
+      {"8", 
+       RowBox[{"-", "12"}]},
+      {"9", 
+       RowBox[{"-", "2"}]},
+      {"11", "4"},
+      {
+       RowBox[{"-", "6"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "13"}], 
+       RowBox[{"-", "7"}]},
+      {"5", "6"},
+      {"11", 
+       RowBox[{"-", "2"}]},
+      {"4", 
+       RowBox[{"-", "7"}]},
+      {"11", "7"},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "4"}]},
+      {
+       RowBox[{"-", "8"}], "9"},
+      {"13", "2"},
+      {"13", "0"},
+      {
+       RowBox[{"-", "2"}], "5"},
+      {"8", "6"},
+      {"4", "13"},
+      {"2", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "2"}], "11"},
+      {
+       RowBox[{"-", "10"}], "6"},
+      {"9", "4"},
+      {"9", "10"},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "8"}]},
+      {
+       RowBox[{"-", "5"}], "0"},
+      {"7", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "9"}], "2"},
+      {"6", "11"},
+      {"7", 
+       RowBox[{"-", "7"}]},
+      {
+       RowBox[{"-", "3"}], "4"},
+      {
+       RowBox[{"-", "2"}], "10"},
+      {"6", "1"},
+      {"4", 
+       RowBox[{"-", "10"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "1"}]},
+      {"4", "6"},
+      {
+       RowBox[{"-", "15"}], "3"},
+      {
+       RowBox[{"-", "8"}], "3"},
+      {
+       RowBox[{"-", "7"}], "1"},
+      {
+       RowBox[{"-", "1"}], "2"},
+      {
+       RowBox[{"-", "9"}], "1"},
+      {
+       RowBox[{"-", "4"}], "0"},
+      {"2", "17"},
+      {"8", 
+       RowBox[{"-", "2"}]},
+      {"7", 
+       RowBox[{"-", "3"}]},
+      {"0", "6"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "6"}]},
+      {"8", 
+       RowBox[{"-", "2"}]},
+      {
+       RowBox[{"-", "10"}], 
+       RowBox[{"-", "8"}]},
+      {"2", 
+       RowBox[{"-", "3"}]},
+      {
+       RowBox[{"-", "8"}], 
+       RowBox[{"-", "3"}]},
+      {"3", "12"},
+      {
+       RowBox[{"-", "3"}], "9"},
+      {
+       RowBox[{"-", "4"}], "3"},
+      {
+       RowBox[{"-", "12"}], "2"},
+      {"12", 
+       RowBox[{"-", "5"}]},
+      {
+       RowBox[{"-", "9"}], 
+       RowBox[{"-", "6"}]},
+      {
+       RowBox[{"-", "18"}], 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "10"}], "4"},
+      {"9", "0"},
+      {
+       RowBox[{"-", "11"}], "8"},
+      {"1", 
+       RowBox[{"-", "12"}]},
+      {
+       RowBox[{"-", "2"}], 
+       RowBox[{"-", "6"}]},
+      {"6", "11"},
+      {
+       RowBox[{"-", "14"}], 
+       RowBox[{"-", "4"}]},
+      {"5", "4"},
+      {
+       RowBox[{"-", "11"}], 
+       RowBox[{"-", "15"}]}
+     },
+     GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.7]}, 
+         Offset[0.27999999999999997`]}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}}], "\[NoBreak]", ")"}], {0, 0}]]], "Output",
+ CellChangeTimes->{
+  3.906202502432022*^9, {3.9062025341310415`*^9, 3.9062025543456297`*^9}, 
+   3.9062026363418007`*^9, {3.9062026856332755`*^9, 3.906202746116077*^9}, 
+   3.9062027803780966`*^9, {3.9062028514480567`*^9, 3.9062028754105673`*^9}, 
+   3.906202976293001*^9, 3.9062031042769656`*^9, 3.9062036042952013`*^9, 
+   3.9062036635819025`*^9, {3.906203708411614*^9, 3.906203724217639*^9}, 
+   3.9062037724189124`*^9, 3.9062038750473647`*^9, 3.9062039110860186`*^9, 
+   3.9062039959802504`*^9},
+ CellLabel->"Out[394]=",ImageCache->GraphicsData["CompressedBitmap", "\<\
+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
+bfjy1A==\
+\>", "ImageResolution" -> \
+120.],ExpressionUUID->"63c76849-3822-4de8-a551-3b078a6a8486"]
+}, Open  ]]
+},
+WindowSize->{829.8, 627.},
+WindowMargins->{{281.4, Automatic}, {85.80000000000007, Automatic}},
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (June 16, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"406224a2-fe73-40c7-aa0d-98baa6a3e405"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 3961, 108, 371, "Input",ExpressionUUID->"dd34281e-5deb-4800-ac98-8de74f5e4593"],
+Cell[4544, 132, 3260, 56, 351, "Output",ExpressionUUID->"2b8b1a63-91aa-43dd-82df-4a0d1b4354c8"],
+Cell[7807, 190, 3259, 56, 351, "Output",ExpressionUUID->"1ae0630d-d164-41e9-a01b-e43e932b1a7e"]
+}, {4}]],
+Cell[CellGroupData[{
+Cell[11100, 251, 5263, 127, 390, "Input",ExpressionUUID->"6fed541e-a988-4737-8d30-45f73993e994"],
+Cell[16366, 380, 5761, 97, 376, "Output",ExpressionUUID->"a63b2269-3256-4bc1-8be6-52b2d74071d9"],
+Cell[22130, 479, 5760, 97, 376, "Output",ExpressionUUID->"4bce6573-7315-4cbc-9648-313f5168a741"],
+Cell[27893, 578, 91697, 4234, 474, 85959, 4139, "CachedBoxData", "BoxData", "Output",ExpressionUUID->"63c76849-3822-4de8-a551-3b078a6a8486"]
+}, Open  ]]
+}
+]
+*)
+

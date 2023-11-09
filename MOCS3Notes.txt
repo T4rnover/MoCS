@@ -1,0 +1,163 @@
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy as sp
+import csv
+
+def get_labels(csvfile):
+    with open(csvfile) as f:
+        reader = csv.reader(f, delimiter=',')
+        # get the first line in csv
+        labels = reader.__next__()
+        # return just the letters from pos 1 on
+        return labels[1:]
+                            
+def make_label_dict(labels):
+    l = {}
+    for i, label in enumerate(labels):
+        l[i] = label
+    return l
+
+data = np.genfromtxt('CIELNET.csv', delimiter=',')
+
+adjacency = data[1:,1:]
+
+rows, cols = np.where(adjacency == 1)
+edges = zip(rows.tolist(), cols.tolist())
+G = nx.Graph()
+G.add_edges_from(edges)
+
+rows, cols = np.where(adjacency == 1)
+edges = zip(rows.tolist(), cols.tolist())
+G = nx.Graph()
+all_rows = range(0, adjacency.shape[0])
+for n in all_rows:
+    G.add_node(n)
+G.add_edges_from(edges)
+
+labels= make_label_dict(get_labels('CIELNET.csv'))
+#labels= get_labels('CIELNET.csv')
+
+def plot_directed_graph_spiral(G):
+    pos = nx.spiral_layout(G)
+    nx.draw_networkx(G, pos=pos, with_labels=True)
+    plt.show()
+
+
+def plot_directed_graph_spring(G):
+    pos = nx.spring_layout(G, k=3)
+    nx.draw_networkx(G, pos=pos, with_labels=True)
+    plt.show()
+
+def plot_directed_graph_spectral(G):
+    pos = nx.spectral_layout(G)
+    nx.draw_networkx(G, pos=pos, with_labels=True)
+    plt.show()
+
+def plot_directed_graph_shell(G):
+    pos = nx.shell_layout(G)
+    nx.draw_networkx(G, pos=pos, with_labels=True)
+    plt.show()
+
+plot_directed_graph_spiral(G)
+
+plot_directed_graph_spring(G)
+
+plot_directed_graph_shell(G)
+plt.savefig('PartCshell_layout.png')
+
+def plot_degree_dist(G):
+    degrees = [G.degree(n) for n in G.nodes()]
+    plt.xlabel('Degree')
+    plt.ylabel('Frequency')
+    plt.title('Degree Distribution')
+    plt.hist(degrees)
+
+degree_freq = nx.degree_histogram(G)
+
+G_deg_sum = [a * b for a, b in zip(degree_freq, range(0, len(degree_freq)))]
+total_degree = sum(G_deg_sum)
+
+avg_k = sum(G_deg_sum) / G.number_of_nodes()
+print(avg_k)
+
+sorted(G.degree, key=lambda x: x[1], reverse=True)
+
+labels
+
+
+
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+import csv
+
+def get_labels(csvfile):
+    with open(csvfile) as f:
+        reader = csv.reader(f, delimiter=',')
+        labels = next(reader)[1:]
+        return labels
+
+def make_label_dict(labels):
+    return {i: label for i, label in enumerate(labels)}
+
+def plot_graph(G, layout):
+    pos = layout(G)
+    nx.draw_networkx(G, pos=pos, with_labels=True)
+    plt.show()
+
+def plot_degree_dist(G):
+    degrees = [G.degree(n) for n in G.nodes()]
+    plt.xlabel('Degree')
+    plt.ylabel('Frequency')
+    plt.title('Degree Distribution')
+    plt.hist(degrees)
+
+def voter_model(G, initial_red_fraction=0.6, max_steps=10000):
+    colors = ['red' if np.random.rand() < initial_red_fraction else 'blue' for _ in G.nodes()]
+    nx.set_node_attributes(G, {i: colors[i] for i in G.nodes()}, 'color')
+
+    for _ in range(max_steps):
+        node = np.random.choice(G.nodes())
+        neighbors = list(G.neighbors(node))
+        if neighbors:
+            G.nodes[node]['color'] = G.nodes[np.random.choice(neighbors)]['color']
+        if len(set(nx.get_node_attributes(G, 'color').values())) == 1:
+            return _
+    return max_steps
+
+data = np.genfromtxt('CIELNET.csv', delimiter=',')
+adjacency = data[1:,1:]
+edges = zip(*np.where(adjacency == 1))
+G = nx.Graph()
+G.add_edges_from(edges)
+
+labels = make_label_dict(get_labels('CIELNET.csv'))
+
+plot_graph(G, nx.spiral_layout)
+plot_graph(G, nx.spring_layout)
+plot_graph(G, nx.shell_layout)
+
+plt.savefig('PartCshell_layout.png')
+
+degree_freq = nx.degree_histogram(G)
+avg_k = sum(a * b for a, b in enumerate(degree_freq)) / G.number_of_nodes()
+print(avg_k)
+
+runs = 100
+times = [voter_model(G) for _ in range(runs)]
+average_time = np.mean(times)
+print(f"Average time to reach consensus over {runs} runs: {average_time}")
+
+
+
+
+
+
+
+
+
+
+
+
+

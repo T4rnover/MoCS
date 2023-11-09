@@ -1,0 +1,49 @@
+The cascade model is a simple toy model to help us think about energy flow in directed acyclic graph such as food webs and some power grids. Imagine n nodes with indices i = 1 to n and place an undirected edge between each unique pair with probability
+p just as in the Erdos-Renyi random graph. 
+
+Now add a direction to every edge such that each edge goes from node i to node i' < i. The index i then informs
+us of the position of a node in a hierarchy (e.g. trophic level in food webs, or distance
+from source in power grids) and the model can be used to help us understand the distribution of energy flow through the hierarchy.
+
+a) Explain why this network is acyclic (i.e. contains no cycle).
+
+b) What is the average in-degree (edges going in) of vertex i? What is the average
+out-degree (edges going out) of vertex i?
+
+c) Show that the expected number of edges that run from nodes i' > i to nodes i'=< i is (ni - i^2)*p.
+
+d) Assuming N is even, what are the largest and smallest values of the quantity
+calculated in c) and where do they occur (in i).
+
+Note: expected edges = p * N, but with the hierarchy of our structure, we would expect the # of edges each node has to depend on its index value, i am not sure yet how to work out the math here to go from exp.edges= p * n to = (ni -i^2)*p
+
+Write a Python Program that generated this model and answers the questions a, b, c and d.
+
+
+The problem is that our compartments are bad; they are too coarse-grained. We put all
+susceptible nodes in the same compartment, ignoring the fact that they do not all have the
+same degree and therefore are not exposed to the same risks (or really, the same transition
+rates). One approach to account for that is to create kmax compartments, where kmax is the
+highest degree in the network. Infectious nodes of degree k are therefore not simply in the
+I compartment, but in the Ik compartment. As we will see next week, we are now using a
+configuration model to describe a dynamical process on the ensemble of all networks with
+the same degree distribution, assuming nodes of equal degree follow the same rules.
+We can write an equation to follow the fraction ˜Ik of nodes in a given compartment
+
+I_tilde_sub_k/dt = lambda*k*(p_sub_k - I_tilde_sub_k)*Theta - I_tilde_sub_k
+
+where pk is the total fraction of nodes of degree k and therefore the carrying capacity for I_tilde_sub_k
+which can only be between 0 and 1. The moment closure is now Theta which we interpret as the
+probability that a random edge around a susceptible node leads to an infectious node.  We can calculate it like so:
+
+Theta = SUM (k*I_tilde_sub_k)/ SUM (k*p*k)
+
+Using the integrator of your choice, test how strong rho needs to be to eradicate an
+outbreak with the following parameters: transmission rate Beta = 0.3 (week^-1
+) and
+recovery rate alpha = 1 (week^-1
+) in a population with a geometric degree distribution
+p_sub_k = p(1 - p)^k
+k with p = 1/4. Assume that a random 40% of the population gets
+vaccinated.
+
